@@ -16,16 +16,17 @@ body {
   --accent-color: #f6e794;
 }
 
-.container {
-  padding: 2rem 1rem;
+/* .container {
   max-width: 1200px;
   margin: auto;
   display: flex;
-}
+} */
 
 nav {
   background-color: var(--background-color);
   align-items: center;
+  display: flex;
+  padding: 2rem 1rem;
 
   ul {
     list-style: none;
