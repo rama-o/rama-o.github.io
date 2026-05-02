@@ -20,6 +20,51 @@ const PAGES = [
 // ---------------------------------------------------------------------------
 
 /**
+ * Fetch all pages of a GitHub REST endpoint, following Link: next headers.
+ * @param {string} url
+ * @returns {Promise<any[]>}
+ */
+async function fetchAllPages(url) {
+	const results = []
+	let next = url
+
+	while (next) {
+		const res = await fetch(next, {
+			headers: { Accept: 'application/vnd.github+json' },
+		})
+
+		// Surface rate-limit info so the user can see if they're being throttled
+		const remaining = res.headers.get('x-ratelimit-remaining')
+		const resetAt = res.headers.get('x-ratelimit-reset')
+		if (remaining !== null && Number(remaining) < 10) {
+			const resetDate = new Date(Number(resetAt) * 1000).toLocaleTimeString()
+			console.warn(
+				`  ⚠ Rate limit low: ${remaining} requests left, resets at ${resetDate}`
+			)
+		}
+
+		if (res.status === 202) {
+			// GitHub returns 202 when contributor stats are still being computed.
+			// Wait a moment and retry once.
+			console.warn(`  ↻ GitHub is computing stats for ${url}, retrying in 3s…`)
+			await new Promise(r => setTimeout(r, 3000))
+			continue
+		}
+
+		if (!res.ok) throw new Error(`GitHub API ${res.status}: ${next}`)
+
+		const page = await res.json()
+		results.push(...page)
+
+		const link = res.headers.get('link') ?? ''
+		const match = link.match(/<([^>]+)>;\s*rel="next"/)
+		next = match ? match[1] : null
+	}
+
+	return results
+}
+
+/**
  * Fetch the latest release for a repo.
  * @param {string} repo  e.g. "rama-io/mako"
  * @returns {Promise<{ tag: string, apkUrl: string | null, htmlUrl: string }>}
@@ -27,11 +72,11 @@ const PAGES = [
 async function getLatestRelease(repo) {
 	const res = await fetch(
 		`https://api.github.com/repos/${repo}/releases/latest`,
-		{ headers: { Accept: 'application/vnd.github+json' } },
+		{ headers: { Accept: 'application/vnd.github+json' } }
 	)
 	if (!res.ok) throw new Error(`[${repo}] releases API ${res.status}`)
 	const data = await res.json()
-	const apk = data.assets?.find((a) => a.name.endsWith('.apk'))
+	const apk = data.assets?.find(a => a.name.endsWith('.apk'))
 	return {
 		tag: data.tag_name,
 		apkUrl: apk?.browser_download_url ?? null,
@@ -40,22 +85,55 @@ async function getLatestRelease(repo) {
 }
 
 /**
- * Fetch all contributors for a repo.
+ * Fetch ALL contributors for a repo by combining:
+ *   1. /contributors  — direct committers (primary source)
+ *   2. /pulls?state=all — PR authors who may not have push access
+ *   3. /issues?state=all — issue authors (non-PR only)
+ *
+ * Deduped by login, bots filtered out, committers listed first.
+ *
  * @param {string} repo  e.g. "rama-io/mako"
  * @returns {Promise<Array<{ login: string, avatarUrl: string, htmlUrl: string }>>}
  */
 async function getContributors(repo) {
-	const res = await fetch(
-		`https://api.github.com/repos/${repo}/contributors?per_page=100`,
-		{ headers: { Accept: 'application/vnd.github+json' } },
+	const base = `https://api.github.com/repos/${repo}`
+
+	const [
+		committers,
+		 prs,
+		//   issues
+	] = await Promise.all([
+		fetchAllPages(`${base}/contributors?per_page=100`),
+		fetchAllPages(`${base}/pulls?state=all&per_page=100`),
+		// fetchAllPages(`${base}/issues?state=all&per_page=100`),
+	])
+
+	console.log(
+		`raw counts — committers: ${committers.length}, PRs: ${prs.length}`
 	)
-	if (!res.ok) throw new Error(`[${repo}] contributors API ${res.status}`)
-	const data = await res.json()
-	return data.map((c) => ({
-		login: c.login,
-		avatarUrl: `https://avatars.githubusercontent.com/u/${c.id}?s=45`,
-		htmlUrl: c.html_url,
-	}))
+
+	/** @type {Map<string, { login: string, avatarUrl: string, htmlUrl: string }>} */
+	const seen = new Map()
+
+	/** @param {{ login?: string, id?: number, html_url?: string } | null | undefined} user */
+	const add = user => {
+		if (!user?.login) return
+		if (user.login.endsWith('[bot]')) return
+		if (seen.has(user.login)) return
+		seen.set(user.login, {
+			login: user.login,
+			avatarUrl: `https://avatars.githubusercontent.com/u/${user.id}?s=45`,
+			htmlUrl: user.html_url,
+		})
+	}
+
+	for (const c of committers) add(c)
+	for (const pr of prs) add(pr.user)
+	// for (const issue of issues) {
+	// 	if (!issue.pull_request) add(issue.user)
+	// }
+
+	return [...seen.values()]
 }
 
 // ---------------------------------------------------------------------------
@@ -80,12 +158,9 @@ function patchRelease(html, release) {
 	const href = release.apkUrl ?? release.htmlUrl
 	const label = `Get the latest (${release.tag}) from GitHub`
 
-	// Match the nn-btn opening tag (with href attr on its own line),
-	// capture the label text, and the closing </nn-btn\n\t...>
 	return html.replace(
 		/([\t ]*<nn-btn\s[\s\S]*?href=")[^"]*("[\s\S]*?>)([\s\S]*?)(<\/nn-btn[\s\S]*?>)/,
-		(_, open, mid, _oldLabel, close) =>
-			`${open}${href}${mid}${label}${close}`,
+		(_, open, mid, _oldLabel, close) => `${open}${href}${mid}${label}${close}`
 	)
 }
 
@@ -99,7 +174,7 @@ function patchRelease(html, release) {
 function patchContributors(html, contributors) {
 	const items = contributors
 		.map(
-			(c) =>
+			c =>
 				`\t\t\t\t\t<li>\n` +
 				`\t\t\t\t\t\t<a href="${c.htmlUrl}" target="_blank" rel="noopener noreferrer">\n` +
 				`\t\t\t\t\t\t\t<img\n` +
@@ -108,13 +183,13 @@ function patchContributors(html, contributors) {
 				`\t\t\t\t\t\t\t\talt="${c.login}'s avatar"\n` +
 				`\t\t\t\t\t\t\t/>\n` +
 				`\t\t\t\t\t\t</a>\n` +
-				`\t\t\t\t\t</li>`,
+				`\t\t\t\t\t</li>`
 		)
 		.join('\n')
 
 	return html.replace(
 		/<ul class="avatars">[\s\S]*?<\/ul>/,
-		`<ul class="avatars">\n${items}\n\t\t\t\t</ul>`,
+		`<ul class="avatars">\n${items}\n\t\t\t\t</ul>`
 	)
 }
 
@@ -127,7 +202,7 @@ async function main() {
 		const filePath = resolve(__dirname, file)
 		let html = readFileSync(filePath, 'utf8')
 
-		console.log(`\n📄 ${file}  →  ${repo}`)
+		console.log(`\nfile: ${file}  →  ${repo}`)
 
 		const [releaseResult, contributorsResult] = await Promise.allSettled([
 			getLatestRelease(repo),
@@ -143,7 +218,9 @@ async function main() {
 
 		if (contributorsResult.status === 'fulfilled') {
 			html = patchContributors(html, contributorsResult.value)
-			console.log(`  ✓ contributors   ${contributorsResult.value.map((c) => c.login).join(', ')}`)
+			console.log(
+				`  ✓ contributors   ${contributorsResult.value.map(c => c.login).join(', ')}`
+			)
 		} else {
 			console.warn(`  ✗ contributors   ${contributorsResult.reason.message}`)
 		}
@@ -151,10 +228,10 @@ async function main() {
 		writeFileSync(filePath, html, 'utf8')
 	}
 
-	console.log('\n✅ Done — HTML files updated.\n')
+	console.log('\n✓ Done — HTML files updated.\n')
 }
 
-main().catch((err) => {
+main().catch(err => {
 	console.error(err)
 	process.exit(1)
 })
