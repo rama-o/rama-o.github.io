@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://chip-defense.github.io/sitemap.xml

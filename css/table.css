@@ -1,0 +1,44 @@
+.table {
+  --leading-server: light-dark(#4e5d85, #2c2c44);
+  
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+
+  nn-pilar.empty {
+    padding: 1rem;
+    background-color: hsl(240 6% 17% / 1);
+  }
+
+  .table-header {
+    nn-pilar {
+      padding: 1rem;
+      color: var(--foreground-color);
+      background: light-dark(
+        rgb(233 233 233),
+        rgb(37 39 55)
+      );
+      text-transform: uppercase;
+    }
+  }
+
+  .table-body {
+    [role='table'],
+    [role='rowgroup'],
+    [role='group'] {
+      height: 100%;
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    nn-pilar {
+        background-color: #2f3a54;
+        padding: 1rem;
+    }
+  }
+}

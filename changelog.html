@@ -1,8 +1,5 @@
 <!doctype html>
-<html
-	lang="en"
-	class="dark"
->
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta
@@ -118,16 +115,17 @@
 		/>
 
 		<!-- Scripts & Styles -->
+		<script
+			type="module"
+			src="./js/head.js"
+		></script>
 		<link
 			rel="stylesheet"
 			href="./css/chip.css"
 		/>
-		<script type="module">
-			import './js/head.js'
-		</script>
 	</head>
 
-	<body class="chip-home">
+	<body class="chip-changelog">
 		<chip-loading></chip-loading>
 
 		<nav>
@@ -199,24 +197,82 @@
 			</nn-caja>
 		</nav>
 
-		<main>
-			<header>
-				<img
-					src="./img/chip_copper.png"
-					width="300"
-					alt="chip-defense-copper logo"
-				/>
+		<nn-caja
+			max-width="1000px"
+			padding="1rem"
+		>
+			<main>
+				<header>
+					<h1>Changelog</h1>
+				</header>
 
-				<nn-btn
-					href="https://github.com/pomboverso/chip-defense-copper"
-					color="#445ca1"
-					link
-					target="_BLANK"
-				>
-					Get it on Github
-				</nn-btn>
-			</header>
-		</main>
+				<section>
+					<h2 id="2022-04">
+						<time datetime="2022-04-10"> 2022 Apr </time>
+					</h2>
+					<ul>
+						<li>Oliver Chadenas Started ChipDefense</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 id="2026-01">
+						<time datetime="2026-01-01"> 2026 Jan </time>
+					</h2>
+					<ul>
+						<li>Pombo Started ChipDefense: Copper</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2 id="2026-02">
+						<time datetime="2026-02-01"> 2026 Feb </time>
+					</h2>
+					<ul>
+						<li>
+							Added
+							<a
+								class="btn-link"
+								href="/"
+								target="_BLANK"
+								link
+								>home</a
+							>
+						</li>
+						<li>
+							Added
+							<a
+								class="btn-link"
+								href="design.html"
+								target="_BLANK"
+								link
+								>Design</a
+							>
+						</li>
+						<li>
+							Added
+							<a
+								class="btn-link"
+								href="credits.html"
+								target="_BLANK"
+								link
+								>Credits</a
+							>
+						</li>
+						<li>
+							Added
+							<a
+								class="btn-link"
+								href="changelog.html"
+								target="_BLANK"
+								link
+								>Changelog</a
+							>
+						</li>
+					</ul>
+				</section>
+			</main>
+		</nn-caja>
 
 		<chip-footer></chip-footer>
 	</body>
