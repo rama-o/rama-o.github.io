@@ -1,8 +1,8 @@
 const home = {
-	url: 'https://chip-defense.github.io/',
+	url: 'https://rama-io.github.io/',
 }
 
-const modulePrefix = 'chip'
+const modulePrefix = 'rama'
 
 function getPrefix(name) {
 	return [modulePrefix, name].join('-')

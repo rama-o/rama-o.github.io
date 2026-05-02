@@ -1,4 +1,4 @@
-.chip-changelog {
+.changelog {
   hr {
     flex-basis: 100%;
     width: 100%;
@@ -7,14 +7,10 @@
     border-width: 2px;
   }
 
-  main {
-    gap: 2rem;
-  }
-
   section {
     gap: 0.5rem;
 
-    h2 {
+    h3 {
       font-size: 1.5rem;
       text-align: left;
     }

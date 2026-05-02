@@ -4,7 +4,7 @@
 sizes=(256 128 64 48 32 24 16 180)
 
 # SVG filenames without extension
-files=("chip_copper")
+files=("rama")
 
 for f in "${files[@]}"; do
   for s in "${sizes[@]}"; do
