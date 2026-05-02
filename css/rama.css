@@ -253,5 +253,20 @@ header {
 nn-caja {
 	display: flex;
 	flex-direction: column;
+	gap: 2rem;
+}
+
+.avatars {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 	gap: 1rem;
+
+	img {
+		border-radius: 50%;
+	}
 }

@@ -1,0 +1,17 @@
+{
+  "name": "rama-io.github.io",
+  "version": "1.0.0",
+  "description": "Rama Website",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rama-o/rama-o.github.io.git"
+  },
+  "author": "Pombo",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/rama-o/rama-o.github.io/issues"
+  },
+  "homepage": "https://rama-o.github.io"
+}

@@ -13,13 +13,13 @@ customElements.define(
       <p>Built with <span class="heart"></span> by <a href="https://github.com/pomboverso" target="_BLANK">Pombo</a>.</p>
       <ul>
         <li>
-          <a href="https://github.com/pomboverso" target="_BLANK">github</a>
+          <a href="https://github.com/rama-io" target="_BLANK">github</a>
         </li>
         <li>
-          <a href="https://www.youtube.com/@pombo_proibido" target="_BLANK">youtube</a>
+          <a href="https://www.youtube.com/@rama-io" target="_BLANK">youtube</a>
         </li>
       </ul>
-      <time datetime="2025/05/03">2026.02.19</time>
+      <time datetime="2026/05/02">2026.05.02</time>
     </footer>
   `,
 		}
