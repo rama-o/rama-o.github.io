@@ -242,7 +242,7 @@ nn-dropdown {
 }
 
 header {
-	height: min(80vh, 600px);
+	height: min(70vh, 700px);
 	display: block;
 	overflow: hidden;
 	width: 100%;
