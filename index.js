@@ -1,4 +1,3 @@
-// @ts-check
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { pipeline } from 'node:stream/promises'
@@ -238,8 +237,7 @@ function patchContributors(html, contributors) {
 function patchChangelog(html, versions) {
 	const sections = versions
 		.map(
-			v => `
-			<section>
+			v => `<section>
 				<h3>${v.version}</h3>
 				<ul>
 					${v.items.map(i => `<li>${i}</li>`).join('')}
@@ -250,7 +248,7 @@ function patchChangelog(html, versions) {
 
 	return html.replace(
 		/(<h2>Changelog<\/h2>\s*)[\s\S]*?(<\/nn-caja>)/,
-		(_, start, end) => `${start}\n${sections}\n${end}`
+		(_, start, end) => `${start.trimEnd()}\n${sections}\n${end}`
 	)
 }
 
