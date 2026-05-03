@@ -2,28 +2,6 @@ nav {
 	display: block;
 	background-color: #15161e;
 
-	.mobile-controls {
-		display: none;
-		justify-content: space-between;
-
-		button {
-			padding: 1rem;
-			border: none;
-			font-size: 1.5rem;
-			background-color: transparent;
-			color: var(--foreground-color);
-
-			&.close-menu {
-				display: none;
-			}
-
-			&:active,
-			&:focus {
-				background-color: (255 255 255 / 0.1);
-			}
-		}
-	}
-
 	ul {
 		display: flex;
 		padding: 0;
@@ -64,7 +42,7 @@ nav {
 	color: var(--accent-color);
 	align-items: center;
 	gap: 0.25rem;
-  display: flex;
+	display: flex;
 }
 
 .nav-controls {
@@ -76,5 +54,52 @@ nav {
 @media (max-width: 992px) {
 	.nav-controls {
 		gap: 1rem;
+	}
+}
+
+@media (max-width: 992px) {
+	nav {
+		ul {
+			flex-direction: column;
+
+			li {
+				width: 100%;
+				text-align: center;
+
+				a:not(.logo) {
+					width: 100%;
+					background: #244;
+					color: var(--foreground-color);
+				}
+			}
+
+			.logo {
+				justify-content: center;
+			}
+
+			.searchbar-area {
+				display: none;
+			}
+
+			nn-dropdown {
+				flex-basis: 100%;
+				width: 100%;
+				display: block;
+
+				&,
+				&.open {
+					.dropdown-trigger {
+						display: none;
+					}
+
+					.dropdown-content {
+						display: flex;
+						width: 100%;
+						flex-direction: column;
+						position: static;
+					}
+				}
+			}
+		}
 	}
 }
