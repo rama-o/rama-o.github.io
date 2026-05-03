@@ -230,8 +230,8 @@ function patchRelease(html, release) {
 	const label = `Get the latest (${release.tag}) from GitHub`
 
 	return html.replace(
-		/([\t ]*<nn-btn\s[\s\S]*?href=")[^"]*("[\s\S]*?>)([\s\S]*?)(<\/nn-btn[\s\S]*?>)/,
-		(_, open, mid, _oldLabel, close) => `${open}${href}${mid}${label}${close}`
+		/(<a[^>]*\bdownload\b[^>]*href=")[^"]*("[^>]*>)[\s\S]*?(<\/a>)/,
+		(_, open, mid, close) => `${open}${href}${mid}${label}${close}`
 	)
 }
 
