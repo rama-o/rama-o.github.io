@@ -1,17 +1,27 @@
 // @ts-check
-import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { pipeline } from 'node:stream/promises'
+import { Readable } from 'node:stream'
+import {
+	readFileSync,
+	writeFileSync,
+	existsSync,
+	mkdirSync,
+	createWriteStream,
+} from 'node:fs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-/**
- * @type {Array<{ file: string, repo?: string, index?: boolean }>}
- */
+const HEADERS = {
+	Accept: 'application/vnd.github+json',
+	'User-Agent': 'rama-build-script',
+}
+
 const PAGES = [
-	{ file: 'mako.html', repo: 'rama-io/mako' },
-	{ file: 'txori.html', repo: 'rama-io/txori' },
-	{ file: 'tui.html', repo: 'rama-io/tui' },
+	{ file: 'mako.html', app: 'mako' },
+	{ file: 'txori.html', app: 'txori' },
+	{ file: 'tui.html', app: 'tui' },
 	{ file: 'index.html', index: true },
 ]
 
@@ -22,7 +32,38 @@ const REPOS = {
 }
 
 // ---------------------------------------------------------------------------
-// GitHub API helpers
+// Download APK
+// ---------------------------------------------------------------------------
+
+async function downloadApkIfNeeded(appName, release) {
+	const version = release.tag.replace(/^v/, '')
+	const fileName = `${appName}_${version}.apk`
+	const filePath = resolve(__dirname, 'apk', fileName)
+
+	mkdirSync(resolve(__dirname, 'apk'), { recursive: true })
+
+	if (existsSync(filePath)) {
+		console.log(`  ↺ ${fileName} already exists`)
+		return fileName
+	}
+
+	const url = `https://github.com/rama-io/${appName}/releases/download/${version}/${fileName}`
+
+	console.log(`  ↓ downloading ${fileName}`)
+
+	const res = await fetch(url)
+	if (!res.ok) {
+		throw new Error(`Download failed (${res.status})`)
+	}
+
+	await pipeline(Readable.fromWeb(res.body), createWriteStream(filePath))
+
+	console.log(`  ✓ saved /apk/${fileName}`)
+	return fileName
+}
+
+// ---------------------------------------------------------------------------
+// GitHub helpers
 // ---------------------------------------------------------------------------
 
 async function fetchAllPages(url) {
@@ -30,17 +71,8 @@ async function fetchAllPages(url) {
 	let next = url
 
 	while (next) {
-		let res
-		for (let attempt = 0; attempt < 5; attempt++) {
-			res = await fetch(next, {
-				headers: { Accept: 'application/vnd.github+json' },
-			})
-			if (res.status !== 202) break
-			const wait = (attempt + 1) * 3000
-			await new Promise(r => setTimeout(r, wait))
-		}
-
-		if (!res.ok) throw new Error(`GitHub API ${res.status}: ${next}`)
+		const res = await fetch(next, { headers: HEADERS })
+		if (!res.ok) throw new Error(`GitHub API ${res.status}`)
 
 		const page = await res.json()
 		results.push(...page)
@@ -56,16 +88,17 @@ async function fetchAllPages(url) {
 async function getLatestRelease(repo) {
 	const res = await fetch(
 		`https://api.github.com/repos/${repo}/releases/latest`,
-		{ headers: { Accept: 'application/vnd.github+json' } }
+		{ headers: HEADERS }
 	)
-	if (!res.ok) throw new Error(`[${repo}] releases API ${res.status}`)
+
+	if (!res.ok) {
+		throw new Error(`[${repo}] release ${res.status}`)
+	}
 
 	const data = await res.json()
-	const apk = data.assets?.find(a => a.name.endsWith('.apk'))
 
 	return {
 		tag: data.tag_name,
-		apkUrl: apk?.browser_download_url ?? null,
 		htmlUrl: data.html_url,
 	}
 }
@@ -76,7 +109,6 @@ async function getContributors(repo) {
 	const committers = await fetchAllPages(`${base}/contributors?per_page=100`)
 	const prs = await fetchAllPages(`${base}/pulls?state=all&per_page=100`)
 
-	/** @type {Map<string, { login: string, avatarUrl: string, htmlUrl: string }>} */
 	const seen = new Map()
 
 	const add = user => {
@@ -90,97 +122,74 @@ async function getContributors(repo) {
 		})
 	}
 
-	for (const c of committers) add(c)
-	for (const pr of prs) add(pr.user)
+	committers.forEach(add)
+	prs.forEach(pr => add(pr.user))
 
 	return [...seen.values()]
 }
 
 async function getChangelog(repo) {
-	const url = `https://raw.githubusercontent.com/${repo}/master/changelog.md`
-	const res = await fetch(url)
-	if (!res.ok) throw new Error(`[${repo}] changelog fetch ${res.status}`)
+	const res = await fetch(
+		`https://raw.githubusercontent.com/${repo}/master/changelog.md`
+	)
+
+	if (!res.ok) throw new Error(`[${repo}] changelog ${res.status}`)
 
 	const md = await res.text()
 
 	const versions = []
 	let currentVersion = null
-	let currentHeading = null
 	let currentItems = []
-	let currentSections = []
 
-	const flushSection = () => {
-		if (currentItems.length > 0) {
-			currentSections.push({
-				heading: currentHeading,
+	const flush = () => {
+		if (currentVersion && currentItems.length) {
+			versions.push({
+				version: currentVersion,
 				items: [...currentItems],
 			})
-			currentItems = []
-			currentHeading = null
 		}
+		currentItems = []
 	}
 
-	const flushVersion = () => {
-		if (currentVersion !== null) {
-			flushSection()
-			if (currentSections.length > 0) {
-				versions.push({
-					version: currentVersion,
-					sections: [...currentSections],
-				})
-			}
-			currentSections = []
-		}
-	}
+	for (const line of md.split('\n')) {
+		const l = line.trim()
 
-	for (const rawLine of md.split('\n')) {
-		const line = rawLine.trim()
-
-		if (/^#{1,2}\s/.test(line)) {
-			const heading = line.replace(/^#+\s*/, '').trim()
-			if (/changelog/i.test(heading) && !/\d/.test(heading)) continue
-			flushVersion()
+		if (/^#{1,2}\s/.test(l)) {
+			const heading = l.replace(/^#+\s*/, '')
+			if (!/\d/.test(heading)) continue
+			flush()
 			currentVersion = heading
 			continue
 		}
 
-		if (/^#{3,}\s/.test(line)) {
-			flushSection()
-			currentHeading = line.replace(/^#+\s*/, '').trim()
-			continue
-		}
-
-		if (/^[-*]\s/.test(line)) {
-			currentItems.push(line.replace(/^[-*]\s*/, '').trim())
+		if (/^[-*]\s/.test(l)) {
+			currentItems.push(l.replace(/^[-*]\s*/, ''))
 		}
 	}
 
-	flushVersion()
+	flush()
 	return versions
 }
 
 // ---------------------------------------------------------------------------
-// HTML patch helpers
+// HTML patching
 // ---------------------------------------------------------------------------
 
 function formatName(name) {
 	return name.charAt(0).toUpperCase() + name.slice(1)
 }
 
-function patchRelease(html, release, appName) {
-	const href = release.apkUrl ?? release.htmlUrl
-	const label = `Download ${formatName(appName)} ${release.tag}`
+function patchRelease(html, release, app) {
+	const version = release.tag.replace(/^v/, '')
+	const href = `/apk/${app}_${version}.apk`
+	const label = `Download ${formatName(app)} ${version}`
 
 	return html.replace(
 		/<a([^>]*\bdownload\b[^>]*)>([\s\S]*?)<\/a>/,
-		(match, attrs) => {
-			// safely replace or add href
-			let newAttrs
-			if (/href="/.test(attrs)) {
-				newAttrs = attrs.replace(/href="[^"]*"/, `href="${href}"`)
-			} else {
-				newAttrs = `${attrs} href="${href}"`
-			}
+		(_, attrs) => {
+			const newAttrs = /href=/.test(attrs)
+				? attrs.replace(/href="[^"]*"/, `href="${href}"`)
+				: `${attrs} href="${href}"`
 
 			return `<a${newAttrs}>${label}</a>`
 		}
@@ -190,21 +199,18 @@ function patchRelease(html, release, appName) {
 function patchIndexButtons(html, releases) {
 	return html.replace(
 		/<a([^>]*data-app="([^"]+)"[^>]*)>([\s\S]*?)<\/a>/g,
-		(match, attrs, app) => {
+		(_, attrs, app) => {
 			const key = app.toLowerCase()
 			const release = releases[key]
-			if (!release) return match
+			if (!release) return _
 
-			const href = release.apkUrl ?? release.htmlUrl
-			const label = `Download ${formatName(key)} ${release.tag}`
+			const version = release.tag.replace(/^v/, '')
+			const href = `/apk/${key}_${version}.apk`
+			const label = `Download ${formatName(key)} ${version}`
 
-			// Replace or inject href safely
-			let newAttrs
-			if (/href="/.test(attrs)) {
-				newAttrs = attrs.replace(/href="[^"]*"/, `href="${href}"`)
-			} else {
-				newAttrs = `${attrs} href="${href}"`
-			}
+			const newAttrs = /href=/.test(attrs)
+				? attrs.replace(/href="[^"]*"/, `href="${href}"`)
+				: `${attrs} href="${href}"`
 
 			return `<a${newAttrs}>${label}</a>`
 		}
@@ -214,47 +220,37 @@ function patchIndexButtons(html, releases) {
 function patchContributors(html, contributors) {
 	const items = contributors
 		.map(
-			c =>
-				`\t\t\t\t\t<li>\n` +
-				`\t\t\t\t\t\t<a href="${c.htmlUrl}" target="_blank">\n` +
-				`\t\t\t\t\t\t\t<img src="${c.avatarUrl}" title="${c.login}" />\n` +
-				`\t\t\t\t\t\t</a>\n` +
-				`\t\t\t\t\t</li>`
+			c => `
+				<li>
+					<a href="${c.htmlUrl}" target="_blank">
+						<img src="${c.avatarUrl}" title="${c.login}" />
+					</a>
+				</li>`
 		)
-		.join('\n')
+		.join('')
 
 	return html.replace(
 		/<ul class="avatars">[\s\S]*?<\/ul>/,
-		`<ul class="avatars">\n${items}\n\t\t\t\t</ul>`
+		`<ul class="avatars">${items}</ul>`
 	)
 }
 
 function patchChangelog(html, versions) {
-	const t = '\t\t\t\t'
-
-	const sectionsHtml = versions
-		.map(({ version, sections }) => {
-			const inner = sections.flatMap(({ heading, items }) => {
-				const lines = []
-				if (heading) lines.push(`${t}\t<h4>${heading}</h4>`)
-				lines.push(`${t}\t<ul>`)
-				items.forEach(i => lines.push(`${t}\t\t<li>${i}</li>`))
-				lines.push(`${t}\t</ul>`)
-				return lines
-			})
-
-			return [
-				`${t}<section>`,
-				`${t}\t<h3>${version}</h3>`,
-				...inner,
-				`${t}</section>`,
-			].join('\n')
-		})
-		.join('\n')
+	const sections = versions
+		.map(
+			v => `
+			<section>
+				<h3>${v.version}</h3>
+				<ul>
+					${v.items.map(i => `<li>${i}</li>`).join('')}
+				</ul>
+			</section>`
+		)
+		.join('')
 
 	return html.replace(
 		/(<h2>Changelog<\/h2>\s*)[\s\S]*?(<\/nn-caja>)/,
-		(_, start, end) => `${start.trimEnd()}\n${sectionsHtml}\n\t\t\t${end}`
+		(_, start, end) => `${start}\n${sections}\n${end}`
 	)
 }
 
@@ -263,22 +259,35 @@ function patchChangelog(html, versions) {
 // ---------------------------------------------------------------------------
 
 async function main() {
+	const releases = {}
+
 	const entries = Object.entries(REPOS)
 
 	const results = await Promise.allSettled(
 		entries.map(([, repo]) => getLatestRelease(repo))
 	)
 
-	const releases = {}
-
 	results.forEach((res, i) => {
 		const key = entries[i][0]
+
 		if (res.status === 'fulfilled') {
 			releases[key] = res.value
 			console.log(`✓ ${key} ${res.value.tag}`)
+		} else {
+			console.error(`✗ ${key}: ${res.reason.message}`)
 		}
 	})
 
+	// Download first
+	for (const [app, release] of Object.entries(releases)) {
+		try {
+			await downloadApkIfNeeded(app, release)
+		} catch (e) {
+			console.warn(`✗ download ${app}: ${e.message}`)
+		}
+	}
+
+	// Patch HTML
 	for (const page of PAGES) {
 		const filePath = resolve(__dirname, page.file)
 		let html = readFileSync(filePath, 'utf8')
@@ -291,10 +300,16 @@ async function main() {
 			continue
 		}
 
-		const repo = page.repo
-		const app = Object.keys(REPOS).find(k => REPOS[k] === repo)
+		const app = page.app
+		const repo = REPOS[app]
+		const release = releases[app]
 
-		html = patchRelease(html, releases[app], app)
+		if (!release) {
+			console.warn(`  ⚠ no release for ${app}`)
+			continue
+		}
+
+		html = patchRelease(html, release, app)
 
 		const [contributors, changelog] = await Promise.all([
 			getContributors(repo),
