@@ -301,13 +301,14 @@ function patchChangelog(html, versions) {
 				`${t}</section>`,
 			].join('\n')
 		})
-		.join('\n\n')
+		.join('\n')
 
 	// Replace everything between <h2>Changelog</h2> and the closing </nn-caja>
 	// of that same block (the one that contains the changelog sections).
+
 	return html.replace(
-		/(<h2>Changelog<\/h2>\s*)([\s\S]*?)(\s*<\/nn-caja>)/,
-		`$1\n${sectionsHtml}\n\t\t\t$3`
+		/(<h2>Changelog<\/h2>\s*)[\s\S]*?(<\/nn-caja>)/,
+		(_, start, end) => `${start.trimEnd()}\n${sectionsHtml}\n\t\t\t${end}`
 	)
 }
 
