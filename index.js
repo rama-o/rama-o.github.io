@@ -21,6 +21,8 @@ const PAGES = [
 
 /**
  * Fetch all pages of a GitHub REST endpoint, following Link: next headers.
+ * Handles 202 Accepted (GitHub computes contributor stats lazily).
+ *
  * @param {string} url
  * @returns {Promise<any[]>}
  */
@@ -29,11 +31,19 @@ async function fetchAllPages(url) {
 	let next = url
 
 	while (next) {
-		const res = await fetch(next, {
-			headers: { Accept: 'application/vnd.github+json' },
-		})
+		let res
+		for (let attempt = 0; attempt < 5; attempt++) {
+			res = await fetch(next, {
+				headers: { Accept: 'application/vnd.github+json' },
+			})
+			if (res.status !== 202) break
+			const wait = (attempt + 1) * 3000
+			console.warn(
+				`  ↻ GitHub is building stats (202), retrying in ${wait / 1000}s…`
+			)
+			await new Promise(r => setTimeout(r, wait))
+		}
 
-		// Surface rate-limit info so the user can see if they're being throttled
 		const remaining = res.headers.get('x-ratelimit-remaining')
 		const resetAt = res.headers.get('x-ratelimit-reset')
 		if (remaining !== null && Number(remaining) < 10) {
@@ -41,14 +51,6 @@ async function fetchAllPages(url) {
 			console.warn(
 				`  ⚠ Rate limit low: ${remaining} requests left, resets at ${resetDate}`
 			)
-		}
-
-		if (res.status === 202) {
-			// GitHub returns 202 when contributor stats are still being computed.
-			// Wait a moment and retry once.
-			console.warn(`  ↻ GitHub is computing stats for ${url}, retrying in 3s…`)
-			await new Promise(r => setTimeout(r, 3000))
-			continue
 		}
 
 		if (!res.ok) throw new Error(`GitHub API ${res.status}: ${next}`)
@@ -86,9 +88,8 @@ async function getLatestRelease(repo) {
 
 /**
  * Fetch ALL contributors for a repo by combining:
- *   1. /contributors  — direct committers (primary source)
- *   2. /pulls?state=all — PR authors who may not have push access
- *   3. /issues?state=all — issue authors (non-PR only)
+ *   1. /contributors    — direct committers (primary source)
+ *   2. /pulls?state=all — PR authors whose commits were squash-merged
  *
  * Deduped by login, bots filtered out, committers listed first.
  *
@@ -98,18 +99,11 @@ async function getLatestRelease(repo) {
 async function getContributors(repo) {
 	const base = `https://api.github.com/repos/${repo}`
 
-	const [
-		committers,
-		 prs,
-		//   issues
-	] = await Promise.all([
-		fetchAllPages(`${base}/contributors?per_page=100`),
-		fetchAllPages(`${base}/pulls?state=all&per_page=100`),
-		// fetchAllPages(`${base}/issues?state=all&per_page=100`),
-	])
+	const committers = await fetchAllPages(`${base}/contributors?per_page=100`)
+	const prs = await fetchAllPages(`${base}/pulls?state=all&per_page=100`)
 
 	console.log(
-		`raw counts — committers: ${committers.length}, PRs: ${prs.length}`
+		`  ℹ raw counts — committers: ${committers.length}, PRs: ${prs.length}`
 	)
 
 	/** @type {Map<string, { login: string, avatarUrl: string, htmlUrl: string }>} */
@@ -129,11 +123,95 @@ async function getContributors(repo) {
 
 	for (const c of committers) add(c)
 	for (const pr of prs) add(pr.user)
-	// for (const issue of issues) {
-	// 	if (!issue.pull_request) add(issue.user)
-	// }
 
 	return [...seen.values()]
+}
+
+/**
+ * Fetch and parse changelog.md from the repo's master branch.
+ *
+ * Expects standard markdown with version headings like:
+ *   ## 2026.35
+ *   ### Added
+ *   - thing
+ *   ### Fixed
+ *   - other thing
+ *
+ *   ## 2026.30
+ *   - flat list item
+ *
+ * Returns an array of version blocks, newest first (preserves file order).
+ *
+ * @param {string} repo  e.g. "rama-io/mako"
+ * @returns {Promise<Array<{ version: string, sections: Array<{ heading: string | null, items: string[] }> }>>}
+ */
+async function getChangelog(repo) {
+	const url = `https://raw.githubusercontent.com/${repo}/master/changelog.md`
+	const res = await fetch(url)
+	if (!res.ok)
+		throw new Error(`[${repo}] changelog fetch ${res.status}: ${url}`)
+	const md = await res.text()
+
+	/** @type {Array<{ version: string, sections: Array<{ heading: string | null, items: string[] }> }>} */
+	const versions = []
+	let currentVersion = null
+	let currentHeading = null
+	let currentItems = []
+	let currentSections = []
+
+	const flushSection = () => {
+		if (currentItems.length > 0) {
+			currentSections.push({
+				heading: currentHeading,
+				items: [...currentItems],
+			})
+			currentItems = []
+			currentHeading = null
+		}
+	}
+
+	const flushVersion = () => {
+		if (currentVersion !== null) {
+			flushSection()
+			if (currentSections.length > 0) {
+				versions.push({
+					version: currentVersion,
+					sections: [...currentSections],
+				})
+			}
+			currentSections = []
+		}
+	}
+
+	for (const rawLine of md.split('\n')) {
+		const line = rawLine.trim()
+
+		// Top-level heading = version  (## 2026.35  or  ## v36  or  # Changelog etc)
+		if (/^#{1,2}\s/.test(line)) {
+			const heading = line.replace(/^#+\s*/, '').trim()
+			// Skip a top-level "Changelog" title that isn't a version
+			if (/changelog/i.test(heading) && !/\d/.test(heading)) continue
+			flushVersion()
+			currentVersion = heading
+			continue
+		}
+
+		// Sub-heading inside a version  (### Added / ### Fixed / etc)
+		if (/^#{3,}\s/.test(line)) {
+			flushSection()
+			currentHeading = line.replace(/^#+\s*/, '').trim()
+			continue
+		}
+
+		// List item  (- item  or  * item)
+		if (/^[-*]\s/.test(line)) {
+			currentItems.push(line.replace(/^[-*]\s*/, '').trim())
+			continue
+		}
+	}
+
+	flushVersion()
+	return versions
 }
 
 // ---------------------------------------------------------------------------
@@ -142,13 +220,6 @@ async function getContributors(repo) {
 
 /**
  * Replace the href and label of the CTA nn-btn download button.
- *
- * The nn-btn in these files uses a non-standard closing tag style:
- *   <nn-btn
- *     href="…"
- *     …
- *     >Label text</nn-btn
- *   >
  *
  * @param {string} html
  * @param {{ tag: string, apkUrl: string | null, htmlUrl: string }} release
@@ -165,7 +236,7 @@ function patchRelease(html, release) {
 }
 
 /**
- * Replace the entire <ul class="avatars"> block with fresh contributor avatars.
+ * Replace the entire <ul class="avatars"> block with live contributor avatars.
  *
  * @param {string} html
  * @param {Array<{ login: string, avatarUrl: string, htmlUrl: string }>} contributors
@@ -193,6 +264,62 @@ function patchContributors(html, contributors) {
 	)
 }
 
+/**
+ * Replace everything between <h2>Changelog</h2> and the next <h2> (or </nn-caja>)
+ * with freshly generated <section> blocks from the parsed changelog.
+ *
+ * Each version becomes:
+ *   <section>
+ *     <h3>2026.35</h3>          ← version heading
+ *     <h4>Added</h4>            ← sub-heading (omitted if none)
+ *     <ul><li>…</li></ul>
+ *   </section>
+ *
+ * @param {string} html
+ * @param {Array<{ version: string, sections: Array<{ heading: string | null, items: string[] }> }>} versions
+ * @returns {string}
+ */
+function patchChangelog(html, versions) {
+	const t = '\t\t\t\t' // base indent inside <nn-caja>
+
+	const sectionsHtml = versions
+		.map(({ version, sections }) => {
+			const innerLines = sections.flatMap(({ heading, items }) => {
+				const lines = []
+				if (heading) lines.push(`${t}\t<h4>${escapeHtml(heading)}</h4>`)
+				lines.push(`${t}\t<ul>`)
+				for (const item of items)
+					lines.push(`${t}\t\t<li>${escapeHtml(item)}</li>`)
+				lines.push(`${t}\t</ul>`)
+				return lines
+			})
+
+			return [
+				`${t}<section>`,
+				`${t}\t<h3>${escapeHtml(version)}</h3>`,
+				...innerLines,
+				`${t}</section>`,
+			].join('\n')
+		})
+		.join('\n\n')
+
+	// Replace everything between <h2>Changelog</h2> and the closing </nn-caja>
+	// of that same block (the one that contains the changelog sections).
+	return html.replace(
+		/(<h2>Changelog<\/h2>\s*)([\s\S]*?)(\s*<\/nn-caja>)/,
+		`$1\n${sectionsHtml}\n\t\t\t$3`
+	)
+}
+
+/** Escape minimal HTML special chars for text content. */
+function escapeHtml(str) {
+	return str
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -202,12 +329,14 @@ async function main() {
 		const filePath = resolve(__dirname, file)
 		let html = readFileSync(filePath, 'utf8')
 
-		console.log(`\nfile: ${file}  →  ${repo}`)
+		console.log(`\n📄 ${file}  →  ${repo}`)
 
-		const [releaseResult, contributorsResult] = await Promise.allSettled([
-			getLatestRelease(repo),
-			getContributors(repo),
-		])
+		const [releaseResult, contributorsResult, changelogResult] =
+			await Promise.allSettled([
+				getLatestRelease(repo),
+				getContributors(repo),
+				getChangelog(repo),
+			])
 
 		if (releaseResult.status === 'fulfilled') {
 			html = patchRelease(html, releaseResult.value)
@@ -225,10 +354,19 @@ async function main() {
 			console.warn(`  ✗ contributors   ${contributorsResult.reason.message}`)
 		}
 
+		if (changelogResult.status === 'fulfilled') {
+			html = patchChangelog(html, changelogResult.value)
+			console.log(
+				`  ✓ changelog      ${changelogResult.value.length} version(s)`
+			)
+		} else {
+			console.warn(`  ✗ changelog      ${changelogResult.reason.message}`)
+		}
+
 		writeFileSync(filePath, html, 'utf8')
 	}
 
-	console.log('\n✓ Done — HTML files updated.\n')
+	console.log('\n✅ Done — HTML files updated.\n')
 }
 
 main().catch(err => {

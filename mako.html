@@ -193,11 +193,11 @@
 
 				<div class="cta">
 					<nn-btn
-						href="https://github.com/rama-io/mako/releases/download/2026.35/mako_2026.35.apk"
+						href="https://github.com/rama-io/mako/releases/download/2026.36/mako_2026.36.apk"
 						link
 						download
 						color="#9848d5"
-						>Get the latest (2026.35) from GitHub</nn-btn
+						>Get the latest (2026.36) from GitHub</nn-btn
 					>
 				</div>
 
@@ -232,19 +232,95 @@
 				</nn-fila>
 			</nn-caja>
 
-			<!-- <nn-caja
+			<nn-caja
 				max-width="1000px"
 				padding="1rem"
 			>
 				<h2>Changelog</h2>
 
+				
 				<section>
-					<h3>v36</h3>
+					<h3>36</h3>
 					<ul>
-						<li>Pin support</li>
+						<li>Add PIN protection for settings</li>
+						<li>Reorganize settings</li>
+						<li>Fix issue where the search bar was not reset when opening apps</li>
+						<li>Reformat German (DE) translations</li>
+						<li>Add Changelog</li>
 					</ul>
 				</section>
-			</nn-caja> -->
+
+				<section>
+					<h3>35</h3>
+					<ul>
+						<li>Separate flavors (no special features yet)</li>
+						<li>Add German (DE) translations</li>
+						<li>Add Turkish (TR) translations</li>
+						<li>Update license from GPLv3 to GPLv3-or-later</li>
+						<li>Add language switcher</li>
+						<li>Add profile indicator visibility toggle</li>
+						<li>Add fullscreen toggle</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>34</h3>
+					<ul>
+						<li>Add wallpaper support for the home screen</li>
+						<li>Add always-visible search bar toggle</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>33</h3>
+					<ul>
+						<li>Split settings into multiple files to improve collaboration</li>
+						<li>Add branding documentation</li>
+						<li>Add attribution documentation</li>
+						<li>Replace Jersey 25 TrueType font with OTF version</li>
+						<li>Add negative/monochrome logo variant</li>
+						<li>Add navigation between documents</li>
+						<li>Fix back navigation issue that caused app reload</li>
+						<li>Improve search performance</li>
+						<li>Add collapsible sections in settings</li>
+						<li>Add custom icon selection</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>32</h3>
+					<ul>
+						<li>Show app version on the About page</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>31</h3>
+					<ul>
+						<li>Add work profile support</li>
+						<li>Refactor preferences storage</li>
+						<li>Fix issue where checkboxes reset when navigating away from Settings</li>
+						<li>Fix &quot;Default&quot; group name not updating consistently</li>
+						<li>Ensure consistent group order between main view and Settings</li>
+						<li>Fix issue where deleting a group removed it twice from storage</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>30</h3>
+					<ul>
+						<li>Rewrite preferences data structure for improved robustness and consistency</li>
+						<li>Use fixed-width Base36 group IDs (minimum 11 characters)</li>
+						<li>Assign deterministic IDs for system groups:</li>
+						<li>`00000000000` → Default</li>
+						<li>`00000000001` → Favorites</li>
+						<li>Generate user group IDs from creation timestamp encoded in Base36</li>
+						<li>Improve default initialization:</li>
+						<li>`initPrefs()` now creates a complete and consistent preferences state on first run</li>
+					</ul>
+				</section>
+			
+			</nn-caja>
 
 			<nn-caja
 				max-width="1000px"
