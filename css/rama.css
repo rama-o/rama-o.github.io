@@ -1,0 +1,287 @@
+@import url('https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid_styles.css');
+
+@import url('./variables.css');
+@import url('./navbar.css');
+@import url('./footer.css');
+@import url('./table.css');
+@import url('./changelog.css');
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
+
+* {
+	box-sizing: border-box;
+	font-family: 'Jersey 25', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	letter-spacing: 1px;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	color: var(--foreground-color);
+	background-color: var(--background-color);
+	overflow-x: hidden;
+}
+
+body {
+	&.light {
+		color-scheme: light;
+	}
+
+	&.dark {
+		color-scheme: dark;
+	}
+}
+
+.sr-only {
+	display: none;
+}
+
+.hidden,
+[data-hidden='true'] {
+	display: none !important;
+}
+
+p,
+h2,
+h3,
+h1 {
+	margin: 0;
+}
+
+img {
+	max-width: 100%;
+}
+
+nn-btn a,
+nav a {
+	text-decoration: none;
+}
+
+a {
+	text-decoration: underline dotted #ecf6ff;
+
+	&.disabled {
+		&,
+		&.btn {
+			color: #333 !important;
+			pointer-events: none;
+		}
+
+		&.btn {
+			--color: #555;
+		}
+	}
+}
+
+h1 {
+	font-size: 4rem;
+	text-align: center;
+	margin: 0;
+	color: var(--accent-color);
+}
+
+h2 {
+	font-size: 3rem;
+	text-align: center;
+	margin: 0;
+	color: var(--accent-color);
+}
+
+h3 {
+	font-size: 1.5rem;
+	text-align: center;
+	margin: 0;
+	color: var(--accent-color);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	min-height: calc(100vh - 248px);
+	justify-content: center;
+
+	p {
+		font-size: 1.25rem;
+		text-align: center;
+		margin: 0;
+	}
+}
+
+nn-dropdown {
+	--nn-dropdown-btn-color: var(--accent-color);
+	--nn-dropdown-btn-bgcolor: var(--background-color);
+
+	.dropdown-trigger {
+		background-color: transparent;
+	}
+
+	.dropdown-content {
+		--nn-dropdown-bgcolor: light-dark(#fcfcfc, #252740);
+		box-shadow: 0px 0px 4px #5757572e;
+	}
+}
+
+.flex-column {
+	--gap: 0.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: var(--gap);
+	padding: 1rem;
+	list-style: none;
+}
+
+.flex-row {
+	--gap: 0.5rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--gap);
+	padding: 0;
+	list-style: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-bar {
+	--nn-input-color: light-dark(#eee, #3d3d60);
+	--nn-input-text-color: light-dark(#333, #eee);
+
+	nn-btn {
+		button,
+		a {
+			--nn-btn-color: var(--nn-input-color);
+			--nn-btn-text-color: var(--nn-input-text-color);
+		}
+	}
+
+	input {
+		all: unset;
+		border: 0;
+		width: max(100%, 35px);
+		min-height: 35px;
+		font-size: 9pt;
+		text-align: center;
+		cursor: text;
+		letter-spacing: 1pt;
+		text-transform: uppercase;
+		transition:
+			background-color 0.2s ease,
+			box-shadow 0.2s ease,
+			border 0.2s ease,
+			color 0.2s ease;
+		border-radius: 0;
+		--nn-input-color-active: color-mix(
+			in srgb,
+			black 15%,
+			var(--nn-input-color)
+		);
+		--nn-input-color-active-shadow: color-mix(
+			in srgb,
+			black 30%,
+			var(--nn-input-color)
+		);
+		color: var(--nn-input-text-color);
+		background-color: var(--nn-input-color);
+		box-shadow: 0 3px 0 var(--nn-input-color-active);
+	}
+}
+
+[data-tooltip]:after {
+	text-transform: uppercase;
+}
+
+.btn,
+.btn-link {
+	display: flex;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	font-size: 9pt;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	font-family: inherit;
+	font-weight: 700;
+	letter-spacing: 1pt;
+	text-transform: uppercase;
+	transition: background-color 0.2s ease;
+	border-radius: 0;
+	border: 0;
+	min-height: 35px;
+	min-width: 35px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.btn {
+	color: #222;
+	background-color: rgb(66, 201, 160);
+	box-shadow: 0 3px 0 rgb(11, 167, 133);
+
+	&:hover {
+		background-color: rgb(109, 230, 193);
+	}
+}
+
+.btn-link {
+	color: #eee;
+	background-color: rgb(106, 66, 201);
+	box-shadow: 0 3px 0 rgb(71, 11, 167);
+	text-decoration: none;
+
+	&:hover {
+		background-color: rgb(109, 111, 230);
+	}
+}
+
+header {
+	height: min(70vh, 700px);
+	display: block;
+	overflow: hidden;
+	width: 100%;
+ 
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+	}
+}
+
+nn-caja {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.avatars {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+
+	img {
+		border-radius: 50%;
+		width: 45px;
+	}
+}
+
+.cta {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+}

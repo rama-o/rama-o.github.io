@@ -1,0 +1,102 @@
+.changelog {
+  hr {
+    flex-basis: 100%;
+    width: 100%;
+    border-color: #cd862c;
+    border-style: dashed;
+    border-width: 2px;
+  }
+
+  section {
+    gap: 0.5rem;
+
+    h3 {
+      font-size: 1.5rem;
+      text-align: left;
+    }
+
+    ul:not(.grid) {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      > li {
+        background-color: #30303c;
+        padding: 0.5rem;
+        display: flex;
+        gap: .5rem;
+
+        &:has(.btn-link) {
+          display: flex;
+          align-items: center;
+
+          .btn-link {
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+
+    ul.grid {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-block: 1rem;
+
+      > li {
+        background-color: #1d1f28;
+        color: var(--foreground-color);
+        flex-grow: 1;
+        text-align: center;
+        padding: 1rem;
+        font-size: 9pt;
+      }
+    }
+
+    dl {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0;
+      margin-block: 1rem 0;
+    }
+
+    dt {
+      color: var(--accent-color);
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    dd.grid {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin: 0;
+
+      > span {
+        background-color: #1d1f28;
+        color: var(--foreground-color);
+        flex-grow: 1;
+        text-align: center;
+        padding: 1rem;
+        font-size: 9pt;
+      }
+    }
+
+    .btn-link {
+      margin-inline: 0.5rem;
+    }
+  }
+}
