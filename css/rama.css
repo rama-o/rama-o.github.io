@@ -346,3 +346,51 @@ nn-caja {
 		cursor: pointer;
 	}
 }
+
+body.home {
+	header {
+		height: auto;
+		padding: 7rem;
+		background: #164650;
+
+		h1 {
+			font-size: 7rem;
+		}
+	}
+
+	.cards {
+		nn-pilar {
+			display: flex;
+			flex-direction: column;
+		}
+
+		h2 {
+			font-size: 2.5rem;
+		}
+
+		p:has(strong) {
+			font-size: 1.25rem;
+			color: #40a98c;
+		}
+
+		p {
+			margin-block-end: 1rem;
+		}
+	}
+
+	nn-caja {
+		gap: 1rem;
+	}
+}
+
+@media (max-width: 992px) {
+	body.home {
+		header {
+			padding: 1rem;
+
+			h1 {
+				font-size: 4rem;
+			}
+		}
+	}
+}
