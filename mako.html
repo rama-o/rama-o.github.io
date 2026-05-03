@@ -18,7 +18,16 @@
 		/>
 
 		<title>Rama</title>
-		<script src="./js/component_loading.js"></script>
+		<link
+			rel="preload"
+			href="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+			as="script"
+			crossorigin
+		/>
+		<script
+			type="module"
+			src="./js/component_loading.js"
+		></script>
 
 		<!-- Favicons -->
 		<link
@@ -126,7 +135,10 @@
 	</head>
 
 	<body class="mako">
-		<rama-loading></rama-loading>
+		<rama-loading
+			blocking-request="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+		>
+		</rama-loading>
 
 		<nav>
 			<nn-caja padding="1rem">
@@ -238,16 +250,20 @@
 				class="changelog"
 			>
 				<h2>Changelog</h2>
+
 				<section>
 					<h3>36</h3>
 					<ul>
 						<li>Add PIN protection for settings</li>
 						<li>Reorganize settings</li>
-						<li>Fix issue where the search bar was not reset when opening apps</li>
+						<li>
+							Fix issue where the search bar was not reset when opening apps
+						</li>
 						<li>Reformat German (DE) translations</li>
 						<li>Add Changelog</li>
 					</ul>
 				</section>
+
 				<section>
 					<h3>35</h3>
 					<ul>
@@ -260,6 +276,7 @@
 						<li>Add fullscreen toggle</li>
 					</ul>
 				</section>
+
 				<section>
 					<h3>34</h3>
 					<ul>
@@ -267,6 +284,7 @@
 						<li>Add always-visible search bar toggle</li>
 					</ul>
 				</section>
+
 				<section>
 					<h3>33</h3>
 					<ul>
@@ -282,34 +300,54 @@
 						<li>Add custom icon selection</li>
 					</ul>
 				</section>
+
 				<section>
 					<h3>32</h3>
 					<ul>
 						<li>Show app version on the About page</li>
 					</ul>
 				</section>
+
 				<section>
 					<h3>31</h3>
 					<ul>
 						<li>Add work profile support</li>
 						<li>Refactor preferences storage</li>
-						<li>Fix issue where checkboxes reset when navigating away from Settings</li>
-						<li>Fix &quot;Default&quot; group name not updating consistently</li>
-						<li>Ensure consistent group order between main view and Settings</li>
-						<li>Fix issue where deleting a group removed it twice from storage</li>
+						<li>
+							Fix issue where checkboxes reset when navigating away from
+							Settings
+						</li>
+						<li>
+							Fix &quot;Default&quot; group name not updating consistently
+						</li>
+						<li>
+							Ensure consistent group order between main view and Settings
+						</li>
+						<li>
+							Fix issue where deleting a group removed it twice from storage
+						</li>
 					</ul>
 				</section>
+
 				<section>
 					<h3>30</h3>
 					<ul>
-						<li>Rewrite preferences data structure for improved robustness and consistency</li>
+						<li>
+							Rewrite preferences data structure for improved robustness and
+							consistency
+						</li>
 						<li>Use fixed-width Base36 group IDs (minimum 11 characters)</li>
 						<li>Assign deterministic IDs for system groups:</li>
 						<li>`00000000000` → Default</li>
 						<li>`00000000001` → Favorites</li>
-						<li>Generate user group IDs from creation timestamp encoded in Base36</li>
+						<li>
+							Generate user group IDs from creation timestamp encoded in Base36
+						</li>
 						<li>Improve default initialization:</li>
-						<li>`initPrefs()` now creates a complete and consistent preferences state on first run</li>
+						<li>
+							`initPrefs()` now creates a complete and consistent preferences
+							state on first run
+						</li>
 					</ul>
 				</section>
 			</nn-caja>
@@ -322,7 +360,11 @@
 
 				<ul class="avatars">
 					<li>
-						<a href="https://github.com/pomboverso" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/pomboverso"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<img
 								src="https://avatars.githubusercontent.com/u/38018741?s=45"
 								title="pomboverso"
@@ -331,7 +373,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://github.com/isotjs" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/isotjs"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<img
 								src="https://avatars.githubusercontent.com/u/179320252?s=45"
 								title="isotjs"
@@ -340,7 +386,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://github.com/NoName11234" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/NoName11234"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<img
 								src="https://avatars.githubusercontent.com/u/47484268?s=45"
 								title="NoName11234"
@@ -349,7 +399,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://github.com/etwasmitbaum" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/etwasmitbaum"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<img
 								src="https://avatars.githubusercontent.com/u/47484288?s=45"
 								title="etwasmitbaum"

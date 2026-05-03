@@ -18,7 +18,16 @@
 		/>
 
 		<title>Rama</title>
-		<script src="./js/component_loading.js"></script>
+		<link
+			rel="preload"
+			href="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+			as="script"
+			crossorigin
+		/>
+		<script
+			type="module"
+			src="./js/component_loading.js"
+		></script>
 
 		<!-- Favicons -->
 		<link
@@ -126,7 +135,10 @@
 	</head>
 
 	<body class="txori">
-		<rama-loading></rama-loading>
+		<rama-loading
+			blocking-request="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+		>
+		</rama-loading>
 
 		<nav>
 			<nn-caja padding="1rem">
@@ -257,7 +269,11 @@
 
 				<ul class="avatars">
 					<li>
-						<a href="https://github.com/pomboverso" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/pomboverso"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<img
 								src="https://avatars.githubusercontent.com/u/38018741?s=45"
 								title="pomboverso"
@@ -266,7 +282,11 @@
 						</a>
 					</li>
 					<li>
-						<a href="https://github.com/var2p" target="_blank" rel="noopener noreferrer">
+						<a
+							href="https://github.com/var2p"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							<img
 								src="https://avatars.githubusercontent.com/u/239077794?s=45"
 								title="var2p"

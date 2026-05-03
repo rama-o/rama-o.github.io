@@ -8,12 +8,26 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jersey+25&display=swap');
 
+nav nn-caja {
+  --nn-caja-padding: 1rem;
+}
+
+main > header + nn-caja,
+main > nn-caja {
+  --nn-caja-max-width: 1000px;
+  --nn-caja-padding: 1rem;
+}
+
 * {
 	box-sizing: border-box;
 	font-family: 'Jersey 25', sans-serif;
 	font-weight: 400;
 	font-style: normal;
 	letter-spacing: 1px;
+}
+
+html {
+  scrollbar-gutter: stable;
 }
 
 html,

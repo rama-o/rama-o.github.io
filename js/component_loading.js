@@ -28,8 +28,14 @@ template.innerHTML = `
   <div>Loading</div>
 `
 
+// Injected immediately when the script runs — before any layout happens
+const pageStyle = document.createElement('style')
+pageStyle.dataset.owner = 'rama-loading'
+pageStyle.textContent = `nav, main { opacity: 0; }`
+document.head.appendChild(pageStyle)
+
 customElements.define(
-  'chip-loading',
+  'rama-loading',
   class extends HTMLElement {
     constructor() {
       super()
@@ -40,6 +46,9 @@ customElements.define(
     }
 
     hide() {
+      // Reveal content at the same time the loading screen starts leaving
+      document.querySelector('style[data-owner="rama-loading"]')?.remove()
+
       this.setAttribute('data-state', 'hiding')
       setTimeout(() => {
         this.setAttribute('hidden', '')
@@ -54,55 +63,38 @@ customElements.define(
         if (document.readyState === 'complete') {
           resolve()
         } else {
-          window.addEventListener('load', () => resolve(), {
-            once: true,
-          })
+          window.addEventListener('load', () => resolve(), { once: true })
         }
       })
 
       const waitForFetch = url
         ? fetch(url).catch(err =>
-            console.error(
-              'Failed to fetch blocking request:',
-              err
-            )
+            console.error('Failed to fetch blocking request:', err)
           )
         : Promise.resolve()
 
-      // wait for HTML and fetch
       await Promise.all([waitForLoad, waitForFetch])
-
-      // Wait for DOM to stabilize
-      await this.waitForDomStable(200) // 200ms stable
+      await this.waitForDomStable(200)
 
       this.hide()
     }
 
-    // Helper function to wait until the document body stops resizing
     async waitForDomStable(stableMs = 200) {
       return new Promise(resolve => {
         let timeout
-        let lastHeight = document.body.scrollHeight
 
-        const observer = new ResizeObserver(() => {
-          const currentHeight = document.body.scrollHeight
-          if (currentHeight !== lastHeight) {
-            lastHeight = currentHeight
-            clearTimeout(timeout)
-            timeout = setTimeout(() => {
-              observer.disconnect()
-              resolve()
-            }, stableMs)
-          }
-        })
+        const settle = () => {
+          clearTimeout(timeout)
+          timeout = setTimeout(() => {
+            observer.disconnect()
+            resolve()
+          }, stableMs)
+        }
 
+        const observer = new ResizeObserver(settle)
         observer.observe(document.body)
-
-        // also handle case where body never changes after load
-        timeout = setTimeout(() => {
-          observer.disconnect()
-          resolve()
-        }, stableMs)
+        observer.observe(document.documentElement)
+        settle()
       })
     }
   }
