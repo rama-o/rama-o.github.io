@@ -205,12 +205,12 @@
 
 				<div class="cta">
 					<a
-						href="/apk/mako_2026.36.apk"
+						href="/apk/mako_2026.37.apk"
 						link
 						download
 						data-app="mako"
 						class="nn-btn"
-					>Download Mako 2026.36</a>
+					>Download Mako 2026.37</a>
 				</div>
 
 				<nn-fila gap="1rem">
@@ -251,6 +251,11 @@
 			>
 				<h2>Changelog</h2>
 <section>
+				<h3>37</h3>
+				<ul>
+					<li>Missing font on radio group for dialog_group_delete</li><li>Missing scroll area for dialog_group_delete and dialog_group_add</li><li>Adding default new group when deleting a group</li>
+				</ul>
+			</section><section>
 				<h3>36</h3>
 				<ul>
 					<li>Add PIN protection for settings</li><li>Reorganize settings</li><li>Fix issue where the search bar was not reset when opening apps</li><li>Reformat German (DE) translations</li><li>Add Changelog</li>
@@ -283,7 +288,7 @@
 			</section><section>
 				<h3>30</h3>
 				<ul>
-					<li>Rewrite preferences data structure for improved robustness and consistency</li><li>Use fixed-width Base36 group IDs (minimum 11 characters)</li><li>Assign deterministic IDs for system groups:</li><li>`00000000000` → Default</li><li>`00000000001` → Favorites</li><li>Generate user group IDs from creation timestamp encoded in Base36</li><li>Improve default initialization:</li><li>`initPrefs()` now creates a complete and consistent preferences state on first run</li>
+					<li>Rewrite preferences data structure for improved robustness and consistency</li><li>Use fixed-width Base36 group IDs (minimum 11 characters)</li><li>Assign deterministic IDs for system groups</li><li>Generate user group IDs from creation timestamp encoded in Base36</li><li>Improve default initialization. `initPrefs()` now creates a complete and consistent preferences</li>
 				</ul>
 			</section>
 </nn-caja>
