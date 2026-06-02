@@ -1,14 +1,6 @@
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { pipeline } from 'node:stream/promises'
-import { Readable } from 'node:stream'
-import {
-	readFileSync,
-	writeFileSync,
-	existsSync,
-	mkdirSync,
-	createWriteStream,
-} from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -28,37 +20,6 @@ const REPOS = {
 	mako: 'rama-io/mako',
 	txori: 'rama-io/txori',
 	tui: 'rama-io/tui',
-}
-
-// ---------------------------------------------------------------------------
-// Download APK
-// ---------------------------------------------------------------------------
-
-async function downloadApkIfNeeded(appName, release) {
-	const version = release.tag.replace(/^v/, '')
-	const fileName = `${appName}_${version}.apk`
-	const filePath = resolve(__dirname, 'apk', fileName)
-
-	mkdirSync(resolve(__dirname, 'apk'), { recursive: true })
-
-	if (existsSync(filePath)) {
-		console.log(`  ↺ ${fileName} already exists`)
-		return fileName
-	}
-
-	const url = `https://github.com/rama-io/${appName}/releases/download/${version}/${fileName}`
-
-	console.log(`  ↓ downloading ${fileName}`)
-
-	const res = await fetch(url)
-	if (!res.ok) {
-		throw new Error(`Download failed (${res.status})`)
-	}
-
-	await pipeline(Readable.fromWeb(res.body), createWriteStream(filePath))
-
-	console.log(`  ✓ saved /apk/${fileName}`)
-	return fileName
 }
 
 // ---------------------------------------------------------------------------
@@ -180,16 +141,15 @@ function formatName(name) {
 
 function patchRelease(html, release, app) {
 	const version = release.tag.replace(/^v/, '')
-	const href = `/apk/${app}_${version}.apk`
+	const href = `https://github.com/rama-io/${app}/releases/latest`
 	const label = `Download ${formatName(app)} ${version}`
 
 	return html.replace(
-		/<a([^>]*\bdownload\b[^>]*)>([\s\S]*?)<\/a>/,
+		/<a([^>]*data-app="[^"]*"[^>]*)>([\s\S]*?)<\/a\s*>/,
 		(_, attrs) => {
-			const newAttrs = /href=/.test(attrs)
-				? attrs.replace(/href="[^"]*"/, `href="${href}"`)
-				: `${attrs} href="${href}"`
-
+			const newAttrs = attrs
+				.replace(/\s*download\s*/g, ' ')
+				.replace(/href="[^"]*"/, `href="${href}"`)
 			return `<a${newAttrs}>${label}</a>`
 		}
 	)
@@ -197,20 +157,19 @@ function patchRelease(html, release, app) {
 
 function patchIndexButtons(html, releases) {
 	return html.replace(
-		/<a([^>]*data-app="([^"]+)"[^>]*)>([\s\S]*?)<\/a>/g,
+		/<a([^>]*data-app="([^"]+)"[^>]*)>([\s\S]*?)<\/a\s*>/g,
 		(_, attrs, app) => {
 			const key = app.toLowerCase()
 			const release = releases[key]
 			if (!release) return _
 
 			const version = release.tag.replace(/^v/, '')
-			const href = `/apk/${key}_${version}.apk`
+			const href = `https://github.com/rama-io/${key}/releases/latest`
 			const label = `Download ${formatName(key)} ${version}`
 
-			const newAttrs = /href=/.test(attrs)
-				? attrs.replace(/href="[^"]*"/, `href="${href}"`)
-				: `${attrs} href="${href}"`
-
+			const newAttrs = attrs
+				.replace(/\s*download\s*/g, ' ')
+				.replace(/href="[^"]*"/, `href="${href}"`)
 			return `<a${newAttrs}>${label}</a>`
 		}
 	)
@@ -275,15 +234,6 @@ async function main() {
 			console.error(`✗ ${key}: ${res.reason.message}`)
 		}
 	})
-
-	// Download first
-	for (const [app, release] of Object.entries(releases)) {
-		try {
-			await downloadApkIfNeeded(app, release)
-		} catch (e) {
-			console.warn(`✗ download ${app}: ${e.message}`)
-		}
-	}
 
 	// Patch HTML
 	for (const page of PAGES) {
