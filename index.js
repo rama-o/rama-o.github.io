@@ -161,18 +161,27 @@ function patchRelease(html, release, app) {
 
 function patchIndexButtons(html, releases) {
 	return html.replace(
-		/<a([^>]*data-app="([^"]+)"[^>]*)>([\s\S]*?)<\/a>/g,
-		(_, attrs, app) => {
-			const release = releases[app.toLowerCase()]
-			if (!release) return _
+		/<a\b((?:[^>]|\n)*?)>([\s\S]*?)<\/a[\s]*>/g,
+		(match, attrs, _content) => {
+			const appMatch = attrs.match(/data-app="([^"]+)"/)
+			if (!appMatch) return match
+
+			const app = appMatch[1]
+			const release = releases[app]
+
+			if (!release?.apkUrl) {
+				console.warn(`No release found for ${app}`)
+				return match
+			}
 
 			const version = release.tag.replace(/^v/, '')
 			const href = release.apkUrl
 			const label = `Download ${formatName(app)} ${version}`
 
-			const newAttrs = /href=/.test(attrs)
-				? attrs.replace(/href="[^"]*"/, `href="${href}"`)
-				: `${attrs} href="${href}"`
+			const newAttrs = attrs.replace(
+				/href="[^"]*"/,
+				`href="${href}"`
+			)
 
 			return `<a${newAttrs}>${label}</a>`
 		}
