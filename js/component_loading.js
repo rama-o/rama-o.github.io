@@ -8,8 +8,6 @@ template.innerHTML = `
       align-items: center;
       justify-content: center;
       background-color: rgb(15 22 42);
-      color: #e5e7eb;
-      font-size: 2rem;
       z-index: 9999;
       transition:
         transform 200ms cubic-bezier(.4, 0, .2, 1),
@@ -23,9 +21,36 @@ template.innerHTML = `
     :host([data-state="hiding"]) {
       transform: translateY(-100%);
     }
+
+    .loader {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-color, #94f6a9);
+      animation: bounce 1.2s ease-in-out infinite;
+    }
+
+    .dot:nth-child(1) { animation-delay: 0s; }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-18px); }
+    }
   </style>
 
-  <div>Loading</div>
+  <div class="loader" aria-label="Loading">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
 `
 
 // Injected immediately when the script runs — before any layout happens
