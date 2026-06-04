@@ -1,6 +1,8 @@
 name: Sync Data
 
 on:
+  # repository_dispatch:
+  #   types: [release-published]
   schedule:
     - cron: "0 9 * * *"
   workflow_dispatch:
@@ -21,8 +23,10 @@ jobs:
         with:
           node-version: 21
 
-      - name: Repopulate with github data
-        run: node .
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node build.mjs
 
       - name: Commit and push changes
         run: |

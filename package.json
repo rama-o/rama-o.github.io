@@ -2,9 +2,8 @@
 	"name": "rama-io.github.io",
 	"version": "1.0.0",
 	"description": "Rama Website",
-	"main": "index.js",
 	"scripts": {
-		"build": "node ."
+		"build": "node build.mjs"
 	},
 	"repository": {
 		"type": "git",
