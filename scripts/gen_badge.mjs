@@ -123,19 +123,19 @@ function buildBadgeSvg({ tag, stars, issues, downloads }) {
 	]
 
 	const sections = labels.map((lbl, i) => {
-		const tx = i * 30
-		const textPath = textToPath(lbl.value, 20, 5)
+		const tx = i * 40
+		const textPath = textToPath(lbl.value, 25, 5)
 		return `
 	<g class="badge" transform="translate(${tx} 0)">
 		<path fill="${lbl.color}" d="${lbl.icon}"/>
-		<rect fill="${lbl.color}" width="20" height="10" x="10" y="0"/>
+		<rect fill="${lbl.color}" width="30" height="10" x="10" y="0"/>
 		${textPath ? `<path fill="#363a4f" d="${textPath}"/>` : ''}
 	</g>`
 	}).join('')
 
-	return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="35" viewBox="0 0 120 10">
+	return `<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 160 10">
 	<g>
-		<rect width="120" height="10" fill="#363a4f"/>
+		<rect width="160" height="10" fill="#363a4f"/>
 		${sections}
 	</g>
 </svg>`
