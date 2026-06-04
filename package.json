@@ -2,11 +2,8 @@
 	"name": "rama-io.github.io",
 	"version": "1.0.0",
 	"description": "Rama Website",
-	"main": "index.js",
 	"scripts": {
-		"build": "node .",
-		"badges": "node generate-badges.js",
-		"build:all": "node generate-badges.js && node ."
+		"build": "node build.mjs"
 	},
 	"repository": {
 		"type": "git",
