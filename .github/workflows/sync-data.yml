@@ -21,7 +21,12 @@ jobs:
         with:
           node-version: 21
 
-      - name: Repopulate with github data
+      - name: Generate badges (with font-as-paths)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node generate-badges.js
+
+      - name: Repopulate HTML with github data
         run: node .
 
       - name: Commit and push changes
