@@ -11,7 +11,7 @@ async function main() {
 	// 1. Fetch releases once — shared by both badges and HTML patching
 	// ------------------------------------------------------------------
 
-	console.log('🔄 Fetching latest releases…\n')
+	console.log('Fetching latest releases…\n')
 
 	const releaseResults = await Promise.allSettled(
 		Object.entries(REPOS).map(async ([key, repo]) => {

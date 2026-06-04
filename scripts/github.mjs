@@ -131,7 +131,7 @@ export async function getRepoStats(repo) {
 			for (const asset of rel.assets)
 				downloads += asset.download_count
 	} catch (e) {
-		console.warn(`  ⚠ downloads unavailable for ${repo}: ${e.message}`)
+		console.warn(`downloads unavailable for ${repo}: ${e.message}`)
 	}
 
 	return {

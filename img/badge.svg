@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="420" height="35" viewBox="0 0 120 10">
   <g font-family="'Jersey 25'" font-size="5" text-anchor="middle" dominant-baseline="middle">
-    <rect width="120" height="10" fill="#313244"/>
+    <rect width="120" height="10" fill="#363a4f"/>
 
     <g class="badge" transform="translate(0 0)">
       <path fill="#e5c890" d="M5.929 6.145h.216v.866h-.433v-.217H5.28v-.216h-.432v-.216h-.433v.216H3.98v.216h-.433v.217h-.433v-.866h.217V5.063h-.217v-.216H2.9V4.63h-.217v-.216h-.216v-.217H2.25v-.432h1.515v-.433h.216v-.433h.216v-.433h.217V2.25h.433v.216h.216v.433h.216v.433h.217v.433H7.01v.432h-.217v.217h-.216v.216h-.216v.217h-.217v.216H5.93z"/>
