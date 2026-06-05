@@ -131,8 +131,9 @@ function formatNum(n) {
 	return String(n)
 }
 
-function buildBadgeSvg({ tag, stars, issues, downloads }) {
+function buildBadgeSvg({ name, tag, stars, issues, downloads }) {
 	const badges = [
+		{ label: name, color: '#b4d89c', icon: ICONS.release },
 		{ label: formatNum(stars), color: '#e5c890', icon: ICONS.stars },
 		{ label: formatNum(issues), color: '#e3ac86', icon: ICONS.issues },
 		{ label: formatNum(downloads), color: '#ca9ee6', icon: ICONS.downloads },

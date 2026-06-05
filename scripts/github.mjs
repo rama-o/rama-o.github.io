@@ -3,9 +3,9 @@
 // ---------------------------------------------------------------------------
 
 export const REPOS = {
-	mako:  'rama-io/mako',
+	mako: 'rama-io/mako',
 	txori: 'rama-io/txori',
-	tui:   'rama-io/tui',
+	tui: 'rama-io/tui',
 }
 
 export const HEADERS = {
@@ -43,11 +43,13 @@ export async function fetchAllPages(url) {
 
 // { tag, htmlUrl, apkUrl }
 export async function getLatestRelease(repo) {
-	const data = await ghFetch(`https://api.github.com/repos/${repo}/releases/latest`)
+	const data = await ghFetch(
+		`https://api.github.com/repos/${repo}/releases/latest`
+	)
 	const apk = data.assets.find(a => a.name.endsWith('.apk'))
 
 	return {
-		tag:    data.tag_name,
+		tag: data.tag_name,
 		htmlUrl: data.html_url,
 		apkUrl: apk?.browser_download_url ?? data.html_url,
 	}
@@ -69,9 +71,9 @@ export async function getContributors(repo) {
 		if (user.login.endsWith('[bot]')) return
 		if (seen.has(user.login)) return
 		seen.set(user.login, {
-			login:     user.login,
+			login: user.login,
 			avatarUrl: `https://avatars.githubusercontent.com/u/${user.id}?s=45`,
-			htmlUrl:   user.html_url,
+			htmlUrl: user.html_url,
 		})
 	}
 
@@ -93,7 +95,8 @@ export async function getChangelog(repo) {
 	let items = []
 
 	const flush = () => {
-		if (current && items.length) versions.push({ version: current, items: [...items] })
+		if (current && items.length)
+			versions.push({ version: current, items: [...items] })
 		items = []
 	}
 
@@ -115,7 +118,7 @@ export async function getChangelog(repo) {
 	return versions
 }
 
-// { tag, stars, issues, downloads }
+// { name, tag, stars, issues, downloads }
 export async function getRepoStats(repo) {
 	const base = `https://api.github.com/repos/${repo}`
 
@@ -128,16 +131,16 @@ export async function getRepoStats(repo) {
 	try {
 		const releases = await fetchAllPages(`${base}/releases?per_page=100`)
 		for (const rel of releases)
-			for (const asset of rel.assets)
-				downloads += asset.download_count
+			for (const asset of rel.assets) downloads += asset.download_count
 	} catch (e) {
 		console.warn(`downloads unavailable for ${repo}: ${e.message}`)
 	}
 
 	return {
-		tag:       latestRelease?.tag_name?.replace(/^v/, '') ?? '—',
-		stars:     repoData.stargazers_count  ?? 0,
-		issues:    repoData.open_issues_count ?? 0,
+		name: repo.split('/')[1].toUpperCase(),
+ 		tag: latestRelease?.tag_name?.replace(/^v/, '') ?? '—',
+		stars: repoData.stargazers_count ?? 0,
+		issues: repoData.open_issues_count ?? 0,
 		downloads,
 	}
 }
