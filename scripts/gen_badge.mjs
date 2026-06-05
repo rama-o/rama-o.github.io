@@ -132,30 +132,33 @@ function formatNum(n) {
 }
 
 function buildBadgeSvg({ tag, stars, issues, downloads }) {
-	const labels = [
-		{ value: formatNum(stars), color: '#e5c890', icon: ICONS.stars },
-		{ value: formatNum(issues), color: '#e3ac86', icon: ICONS.issues },
-		{ value: formatNum(downloads), color: '#ca9ee6', icon: ICONS.downloads },
-		{ value: tag, color: '#b4d89c', icon: ICONS.release },
+	const badges = [
+		{ label: formatNum(stars), color: '#e5c890', icon: ICONS.stars },
+		{ label: formatNum(issues), color: '#e3ac86', icon: ICONS.issues },
+		{ label: formatNum(downloads), color: '#ca9ee6', icon: ICONS.downloads },
+		{ label: tag, color: '#b4d89c', icon: ICONS.release },
 	]
 
 	const base = 10
 	const block = { width: base, height: base }
-	const text = { width: base * 4, height: base }
-	const svg = { width: (text.width + block.width) * 4, height: block.height }
+	const text = { width: base * 3, height: base }
+	const svg = {
+		width: (text.width + block.width) * badges.length,
+		height: block.height,
+	}
 
-	const sections = labels
-		.map((lbl, i) => {
+	const sections = badges
+		.map((badge, i) => {
 			const text_x = i * (text.width + block.width)
 			const text_center_x = block.width + text.width / 2
 			const text_center_y = text.height / 2
 
-			const textPath = textToPath(lbl.value, text_center_x, text_center_y)
+			const textPath = textToPath(badge.label, text_center_x, text_center_y)
 
 			return `
 	<g class="badge" transform="translate(${text_x} 0)">
-		<path fill="${lbl.color}" d="${lbl.icon}"/>
-		<rect fill="${lbl.color}" width="${base * 4}" height="${text.height}" x="${block.width}" y="0"/>
+		<path fill="${badge.color}" d="${badge.icon}"/>
+		<rect fill="${badge.color}" width="${text.width}" height="${text.height}" x="${block.width}" y="0"/>
 		${textPath ? `<path fill="#363a4f" d="${textPath}"/>` : ''}
 	</g>`
 		})
