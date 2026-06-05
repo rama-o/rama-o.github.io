@@ -26,7 +26,10 @@ function textToPath(text, cx, cy) {
 
 	for (const ch of text) {
 		const g = GLYPHS[ch]
-		if (!g) { x += 0.6; continue }
+		if (!g) {
+			x += 0.6
+			continue
+		}
 		if (g.d) parts.push(translatePath(g.d, x, baselineY))
 		x += g.adv
 	}
@@ -35,17 +38,25 @@ function textToPath(text, cx, cy) {
 }
 
 function translatePath(d, dx, dy) {
-	const tokens = d.match(/[MmLlHhVvCcSsQqTtAaZz]|[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?/g) || []
+	const tokens =
+		d.match(
+			/[MmLlHhVvCcSsQqTtAaZz]|[-+]?[0-9]*\.?[0-9]+(?:[eE][-+]?[0-9]+)?/g
+		) || []
 	const out = []
 	let i = 0
 
 	while (i < tokens.length) {
 		const cmd = tokens[i]
-		if (!/[MmLlHhVvCcSsQqTtAaZz]/.test(cmd)) { i++; continue }
+		if (!/[MmLlHhVvCcSsQqTtAaZz]/.test(cmd)) {
+			i++
+			continue
+		}
 		i++
 
 		switch (cmd) {
-			case 'M': case 'L': case 'T': {
+			case 'M':
+			case 'L':
+			case 'T': {
 				out.push(cmd)
 				while (i < tokens.length && !/[A-Za-z]/.test(tokens[i]))
 					out.push(`${r(+tokens[i++] + dx)} ${r(+tokens[i++] + dy)}`)
@@ -70,14 +81,16 @@ function translatePath(d, dx, dy) {
 						out.push(`${r(+tokens[i++] + dx)} ${r(+tokens[i++] + dy)}`)
 				break
 			}
-			case 'S': case 'Q': {
+			case 'S':
+			case 'Q': {
 				out.push(cmd)
 				while (i < tokens.length && !/[A-Za-z]/.test(tokens[i]))
 					for (let p = 0; p < 2; p++)
 						out.push(`${r(+tokens[i++] + dx)} ${r(+tokens[i++] + dy)}`)
 				break
 			}
-			case 'Z': case 'z': {
+			case 'Z':
+			case 'z': {
 				out.push('Z')
 				break
 			}
@@ -96,16 +109,20 @@ const r = n => Math.round(n * 10000) / 10000
 // ---------------------------------------------------------------------------
 
 const ICONS = {
-	stars:     'M5.929 6.145h.216v.866h-.433v-.217H5.28v-.216h-.432v-.216h-.433v.216H3.98v.216h-.433v.217h-.433v-.866h.217V5.063h-.217v-.216H2.9V4.63h-.217v-.216h-.216v-.217H2.25v-.432h1.515v-.433h.216v-.433h.216v-.433h.217V2.25h.433v.216h.216v.433h.216v.433h.217v.433H7.01v.432h-.217v.217h-.216v.216h-.216v.217h-.217v.216H5.93z',
-	issues:    'M4.115 2.249v.216h1.3V2.25zm1.3.216v.217h.216v-.217zm0 .217h-.217V4.63h.217zm0 1.948v.217h.216V4.63zm.216.217v.216h.217v-.216zm.217.216v.217h.216v-.217zm.216.217v.216h.217V5.28zm.217.216v.433h.216v-.433zm.216.433v.433h.216v-.433zm.216.433v.433h.217v-.433zm0 .433H2.786v.216h3.896zm-3.896 0v-.433H2.6v.433zm0-.433h.216v-.433H2.6zm.216-.433h.217v-.433h-.217zm.217-.433h.216V5.28h-.216zm.216-.216h.217v-.217h-.217zm.217-.217h.216v-.216h-.216zm.216-.216h.216V4.63H3.9zm.216-.217h.217V2.682h-.217zm0-1.948v-.217H3.9v.217zm-.432 2.598v.216h-.217v.433h-.216v.433h-.217v.216h3.464v-.216h-.216v-.433h-.217v-.433h-.216V5.28h-.217v-.217h-.216v-.216h-.65v.216h-.217v.217zm1.082.216h.217v.217h-.217zm-.866.217h.433v.432h-.433z',
-	downloads: 'M5.55 6.794h.432v-.216h.433v-.216h.216v-.217h.217v-.433h.216V5.28h.217V3.981h-.217v-.433h-.216v-.433h-.217V2.9h-.216v-.217h-.433v-.216h-.433V2.25h-1.298v.216h-.433v.216h-.433V2.9h-.216v.216h-.217v.433h-.216v.433h-.217v1.298h.217v.433h.216v.433h.217v.217h.216v.216h.433v.216h.433v.217h1.298zm-1.083-1.298v-.217h-.216v-.216h-.217v-.216h-.216V4.63h.866V3.332h.432V4.63h.866v.217h-.216v.216h-.217v.216h-.216v.217h-.217v.216h-.432v-.216z',
-	release:   'M6.333 2.547v.216H5.9v.217h-.433v.216H5.25v.217h-.216v.433h.216v.432h.217v.433H5.9v-.216h.432v-.217h.433v-.216h.217v-.216h.216v-.433h.217v-.866zm-3.679.65v.649h.217v.432h.216v.433h.216v.217h.217v.216h.433v.217h.865v1.515h.433V4.495h-.216v-.433h-.217v-.216h-.216v-.217h-.433v-.216h-.433v-.217z',
+	stars:
+		'M5.929 6.145h.216v.866h-.433v-.217H5.28v-.216h-.432v-.216h-.433v.216H3.98v.216h-.433v.217h-.433v-.866h.217V5.063h-.217v-.216H2.9V4.63h-.217v-.216h-.216v-.217H2.25v-.432h1.515v-.433h.216v-.433h.216v-.433h.217V2.25h.433v.216h.216v.433h.216v.433h.217v.433H7.01v.432h-.217v.217h-.216v.216h-.216v.217h-.217v.216H5.93z',
+	issues:
+		'M4.115 2.249v.216h1.3V2.25zm1.3.216v.217h.216v-.217zm0 .217h-.217V4.63h.217zm0 1.948v.217h.216V4.63zm.216.217v.216h.217v-.216zm.217.216v.217h.216v-.217zm.216.217v.216h.217V5.28zm.217.216v.433h.216v-.433zm.216.433v.433h.216v-.433zm.216.433v.433h.217v-.433zm0 .433H2.786v.216h3.896zm-3.896 0v-.433H2.6v.433zm0-.433h.216v-.433H2.6zm.216-.433h.217v-.433h-.217zm.217-.433h.216V5.28h-.216zm.216-.216h.217v-.217h-.217zm.217-.217h.216v-.216h-.216zm.216-.216h.216V4.63H3.9zm.216-.217h.217V2.682h-.217zm0-1.948v-.217H3.9v.217zm-.432 2.598v.216h-.217v.433h-.216v.433h-.217v.216h3.464v-.216h-.216v-.433h-.217v-.433h-.216V5.28h-.217v-.217h-.216v-.216h-.65v.216h-.217v.217zm1.082.216h.217v.217h-.217zm-.866.217h.433v.432h-.433z',
+	downloads:
+		'M5.55 6.794h.432v-.216h.433v-.216h.216v-.217h.217v-.433h.216V5.28h.217V3.981h-.217v-.433h-.216v-.433h-.217V2.9h-.216v-.217h-.433v-.216h-.433V2.25h-1.298v.216h-.433v.216h-.433V2.9h-.216v.216h-.217v.433h-.216v.433h-.217v1.298h.217v.433h.216v.433h.217v.217h.216v.216h.433v.216h.433v.217h1.298zm-1.083-1.298v-.217h-.216v-.216h-.217v-.216h-.216V4.63h.866V3.332h.432V4.63h.866v.217h-.216v.216h-.217v.216h-.216v.217h-.217v.216h-.432v-.216z',
+	release:
+		'M6.333 2.547v.216H5.9v.217h-.433v.216H5.25v.217h-.216v.433h.216v.432h.217v.433H5.9v-.216h.432v-.217h.433v-.216h.217v-.216h.216v-.433h.217v-.866zm-3.679.65v.649h.217v.432h.216v.433h.216v.217h.217v.216h.433v.217h.865v1.515h.433V4.495h-.216v-.433h-.217v-.216h-.216v-.217h-.433v-.216h-.433v-.217z',
 }
 
 const BADGE_FILES = {
-	mako:  '../img/badge_mako.svg',
+	mako: '../img/badge_mako.svg',
 	txori: '../img/badge_txori.svg',
-	tui:   '../img/badge_tui.svg',
+	tui: '../img/badge_tui.svg',
 }
 
 function formatNum(n) {
@@ -116,26 +133,37 @@ function formatNum(n) {
 
 function buildBadgeSvg({ tag, stars, issues, downloads }) {
 	const labels = [
-		{ value: formatNum(stars),     color: '#e5c890', icon: ICONS.stars },
-		{ value: formatNum(issues),    color: '#e3ac86', icon: ICONS.issues },
+		{ value: formatNum(stars), color: '#e5c890', icon: ICONS.stars },
+		{ value: formatNum(issues), color: '#e3ac86', icon: ICONS.issues },
 		{ value: formatNum(downloads), color: '#ca9ee6', icon: ICONS.downloads },
-		{ value: tag,                  color: '#b4d89c', icon: ICONS.release },
+		{ value: tag, color: '#b4d89c', icon: ICONS.release },
 	]
 
-	const sections = labels.map((lbl, i) => {
-		const tx = i * 40
-		const textPath = textToPath(lbl.value, 25, 5)
-		return `
-	<g class="badge" transform="translate(${tx} 0)">
+	const base = 10
+	const block = { width: base, height: base }
+	const text = { width: base * 4, height: base }
+	const svg = { width: (text.width + block.width) * 4, height: block.height }
+
+	const sections = labels
+		.map((lbl, i) => {
+			const text_x = i * (text.width + block.width)
+			const text_center_x = block.width + text.width / 2
+			const text_center_y = text.height / 2
+
+			const textPath = textToPath(lbl.value, text_center_x, text_center_y)
+
+			return `
+	<g class="badge" transform="translate(${text_x} 0)">
 		<path fill="${lbl.color}" d="${lbl.icon}"/>
-		<rect fill="${lbl.color}" width="30" height="10" x="10" y="0"/>
+		<rect fill="${lbl.color}" width="${base * 4}" height="${text.height}" x="${block.width}" y="0"/>
 		${textPath ? `<path fill="#363a4f" d="${textPath}"/>` : ''}
 	</g>`
-	}).join('')
+		})
+		.join('')
 
-	return `<svg xmlns="http://www.w3.org/2000/svg" height="25" viewBox="0 0 160 10">
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 ${svg.width} ${svg.height}">
 	<g>
-		<rect width="160" height="10" fill="#363a4f"/>
+		<rect width="${svg.width}" height="${svg.height}" fill="#363a4f"/>
 		${sections}
 	</g>
 </svg>`
