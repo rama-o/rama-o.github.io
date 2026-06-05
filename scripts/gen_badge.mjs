@@ -109,14 +109,21 @@ const r = n => Math.round(n * 10000) / 10000
 // ---------------------------------------------------------------------------
 
 const ICONS = {
-	stars:
-		'M5.929 6.145h.216v.866h-.433v-.217H5.28v-.216h-.432v-.216h-.433v.216H3.98v.216h-.433v.217h-.433v-.866h.217V5.063h-.217v-.216H2.9V4.63h-.217v-.216h-.216v-.217H2.25v-.432h1.515v-.433h.216v-.433h.216v-.433h.217V2.25h.433v.216h.216v.433h.216v.433h.217v.433H7.01v.432h-.217v.217h-.216v.216h-.216v.217h-.217v.216H5.93z',
-	issues:
-		'M4.115 2.249v.216h1.3V2.25zm1.3.216v.217h.216v-.217zm0 .217h-.217V4.63h.217zm0 1.948v.217h.216V4.63zm.216.217v.216h.217v-.216zm.217.216v.217h.216v-.217zm.216.217v.216h.217V5.28zm.217.216v.433h.216v-.433zm.216.433v.433h.216v-.433zm.216.433v.433h.217v-.433zm0 .433H2.786v.216h3.896zm-3.896 0v-.433H2.6v.433zm0-.433h.216v-.433H2.6zm.216-.433h.217v-.433h-.217zm.217-.433h.216V5.28h-.216zm.216-.216h.217v-.217h-.217zm.217-.217h.216v-.216h-.216zm.216-.216h.216V4.63H3.9zm.216-.217h.217V2.682h-.217zm0-1.948v-.217H3.9v.217zm-.432 2.598v.216h-.217v.433h-.216v.433h-.217v.216h3.464v-.216h-.216v-.433h-.217v-.433h-.216V5.28h-.217v-.217h-.216v-.216h-.65v.216h-.217v.217zm1.082.216h.217v.217h-.217zm-.866.217h.433v.432h-.433z',
+	stars: {
+		d: 'M5.929 6.145h.216v.866h-.433v-.217H5.28v-.216h-.432v-.216h-.433v.216H3.98v.216h-.433v.217h-.433v-.866h.217V5.063h-.217v-.216H2.9V4.63h-.217v-.216h-.216v-.217H2.25v-.432h1.515v-.433h.216v-.433h.216v-.433h.217V2.25h.433v.216h.216v.433h.216v.433h.217v.433H7.01v.432h-.217v.217h-.216v.216h-.216v.217h-.217v.216H5.93z',
+	},
+	science: {
+		d: 'M4.115 2.249v.216h1.3V2.25zm1.3.216v.217h.216v-.217zm0 .217h-.217V4.63h.217zm0 1.948v.217h.216V4.63zm.216.217v.216h.217v-.216zm.217.216v.217h.216v-.217zm.216.217v.216h.217V5.28zm.217.216v.433h.216v-.433zm.216.433v.433h.216v-.433zm.216.433v.433h.217v-.433zm0 .433H2.786v.216h3.896zm-3.896 0v-.433H2.6v.433zm0-.433h.216v-.433H2.6zm.216-.433h.217v-.433h-.217zm.217-.433h.216V5.28h-.216zm.216-.216h.217v-.217h-.217zm.217-.217h.216v-.216h-.216zm.216-.216h.216V4.63H3.9zm.216-.217h.217V2.682h-.217zm0-1.948v-.217H3.9v.217zm-.432 2.598v.216h-.217v.433h-.216v.433h-.217v.216h3.464v-.216h-.216v-.433h-.217v-.433h-.216V5.28h-.217v-.217h-.216v-.216h-.65v.216h-.217v.217zm1.082.216h.217v.217h-.217zm-.866.217h.433v.432h-.433z',
+	},
 	downloads:
 		'M5.55 6.794h.432v-.216h.433v-.216h.216v-.217h.217v-.433h.216V5.28h.217V3.981h-.217v-.433h-.216v-.433h-.217V2.9h-.216v-.217h-.433v-.216h-.433V2.25h-1.298v.216h-.433v.216h-.433V2.9h-.216v.216h-.217v.433h-.216v.433h-.217v1.298h.217v.433h.216v.433h.217v.217h.216v.216h.433v.216h.433v.217h1.298zm-1.083-1.298v-.217h-.216v-.216h-.217v-.216h-.216V4.63h.866V3.332h.432V4.63h.866v.217h-.216v.216h-.217v.216h-.216v.217h-.217v.216h-.432v-.216z',
-	release:
-		'M6.333 2.547v.216H5.9v.217h-.433v.216H5.25v.217h-.216v.433h.216v.432h.217v.433H5.9v-.216h.432v-.217h.433v-.216h.217v-.216h.216v-.433h.217v-.866zm-3.679.65v.649h.217v.432h.216v.433h.216v.217h.217v.216h.433v.217h.865v1.515h.433V4.495h-.216v-.433h-.217v-.216h-.216v-.217h-.433v-.216h-.433v-.217z',
+	seed: {
+		d: 'M6.333 2.547v.216H5.9v.217h-.433v.216H5.25v.217h-.216v.433h.216v.432h.217v.433H5.9v-.216h.432v-.217h.433v-.216h.217v-.216h.216v-.433h.217v-.866zm-3.679.65v.649h.217v.432h.216v.433h.216v.217h.217v.216h.433v.217h.865v1.515h.433V4.495h-.216v-.433h-.217v-.216h-.216v-.217h-.433v-.216h-.433v-.217z',
+	},
+	crown: {
+		d: 'M23 7v2h-1v1h-1v4h-1v3h-1v2h-1v2H6v-2H5v-2H4v-3H3v-4H2V9H1V7h1V6h2v1h1v2H4v1h1v1h1v1h2v-1h1V9h1V7h1V6h-1V4h1V3h2v1h1v2h-1v1h1v2h1v2h1v1h2v-1h1v-1h1V9h-1V7h1V6h2v1z',
+		transform: 'translate(0.5 1) scale(0.4)',
+	},
 }
 
 const BADGE_FILES = {
@@ -132,12 +139,21 @@ function formatNum(n) {
 }
 
 function buildBadgeSvg({ name, tag, stars, issues, downloads }) {
+	const COLORS = {
+		green: '#b4d89c',
+		blue: '#8aadf4',
+		yellow: '#e5c890',
+		orange: '#e3ac86',
+		mauve: '#ca9ee6',
+		surface0: '#363a4f',
+	}
+
 	const badges = [
-		{ label: name, color: '#b4d89c', icon: ICONS.release },
-		{ label: formatNum(stars), color: '#e5c890', icon: ICONS.stars },
-		{ label: formatNum(issues), color: '#e3ac86', icon: ICONS.issues },
-		{ label: formatNum(downloads), color: '#ca9ee6', icon: ICONS.downloads },
-		{ label: tag, color: '#b4d89c', icon: ICONS.release },
+		{ label: name, color: COLORS.green, icon: ICONS.seed },
+		{ label: formatNum(stars), color: COLORS.yellow, icon: ICONS.stars },
+		{ label: formatNum(issues), color: COLORS.orange, icon: ICONS.science },
+		{ label: formatNum(downloads), color: COLORS.mauve, icon: ICONS.downloads },
+		{ label: tag, color: COLORS.blue, icon: ICONS.crown },
 	]
 
 	const base = 10
@@ -156,18 +172,24 @@ function buildBadgeSvg({ name, tag, stars, issues, downloads }) {
 
 			const textPath = textToPath(badge.label, text_center_x, text_center_y)
 
+			const iconPath =
+				typeof badge.icon === 'string' ? badge.icon : badge.icon.d
+
+			const iconTransform =
+				typeof badge.icon === 'string' ? '' : badge.icon.transform || ''
+
 			return `
 	<g class="badge" transform="translate(${text_x} 0)">
-		<path fill="${badge.color}" d="${badge.icon}"/>
+		<path transform="${iconTransform || ''}" fill="${badge.color}" d="${iconPath}"/>
 		<rect fill="${badge.color}" width="${text.width}" height="${text.height}" x="${block.width}" y="0"/>
-		${textPath ? `<path fill="#363a4f" d="${textPath}"/>` : ''}
+		${textPath ? `<path fill="${COLORS.surface0}" d="${textPath}"/>` : ''}
 	</g>`
 		})
 		.join('')
 
 	return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" viewBox="0 0 ${svg.width} ${svg.height}">
 	<g>
-		<rect width="${svg.width}" height="${svg.height}" fill="#363a4f"/>
+		<rect width="${svg.width}" height="${svg.height}" fill="${COLORS.surface0}"/>
 		${sections}
 	</g>
 </svg>`
@@ -191,13 +213,13 @@ export async function generateBadges(repos, releases) {
 
 	for (const result of statsResults) {
 		if (result.status === 'rejected') {
-			console.error(`  ✗ badge: ${result.reason.message}`)
+			console.error(`✗ badge: ${result.reason.message}`)
 			continue
 		}
 
 		const [key, stats] = result.value
 		const outFile = resolve(__dirname, BADGE_FILES[key])
 		writeFileSync(outFile, buildBadgeSvg(stats), 'utf8')
-		console.log(`  ✓ ${BADGE_FILES[key]}`)
+		console.log(`✓ ${BADGE_FILES[key]}`)
 	}
 }

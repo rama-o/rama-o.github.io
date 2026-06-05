@@ -1,12 +1,14 @@
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { REPOS, getLatestRelease } from './scripts/github.mjs'
+import { REPOS, DEV, getLatestRelease } from './scripts/github.mjs'
 import { generateBadges } from './scripts/gen_badge.mjs'
 import { patchAllHtml } from './patch_html.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 async function main() {
+	if (DEV) console.log('⚠  DEV mode — all GitHub API calls are skipped\n')
+
 	// ------------------------------------------------------------------
 	// 1. Fetch releases once — shared by both badges and HTML patching
 	// ------------------------------------------------------------------

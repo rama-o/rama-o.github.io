@@ -2,6 +2,35 @@
 // Shared GitHub client
 // ---------------------------------------------------------------------------
 
+// Set to true to skip all network calls and return mock data instead.
+export const DEV = true
+
+// ---------------------------------------------------------------------------
+// Mock data (used when DEV = true)
+// ---------------------------------------------------------------------------
+
+const MOCK_RELEASE = repo => ({
+	tag: 'v0.0.0-dev',
+	htmlUrl: `https://github.com/${repo}/releases`,
+	apkUrl: `https://github.com/${repo}/releases`,
+})
+
+const MOCK_CONTRIBUTORS = () => [
+	{ login: 'dev-user', avatarUrl: 'https://avatars.githubusercontent.com/u/0?s=45', htmlUrl: 'https://github.com' },
+]
+
+const MOCK_CHANGELOG = () => [
+	{ version: '0.0.0-dev', items: ['Dev mode — no network calls made'] },
+]
+
+const MOCK_REPO_STATS = repo => ({
+	name: repo.split('/')[1].toUpperCase(),
+	tag: '0.0.0-dev',
+	stars: 0,
+	issues: 0,
+	downloads: 0,
+})
+
 export const REPOS = {
 	mako: 'rama-io/mako',
 	txori: 'rama-io/txori',
@@ -17,12 +46,14 @@ export const HEADERS = {
 }
 
 export async function ghFetch(url) {
+	if (DEV) return {}
 	const res = await fetch(url, { headers: HEADERS })
 	if (!res.ok) throw new Error(`GitHub API ${res.status} for ${url}`)
 	return res.json()
 }
 
 export async function fetchAllPages(url) {
+	if (DEV) return []
 	const results = []
 	let next = url
 
@@ -43,6 +74,7 @@ export async function fetchAllPages(url) {
 
 // { tag, htmlUrl, apkUrl }
 export async function getLatestRelease(repo) {
+	if (DEV) return MOCK_RELEASE(repo)
 	const data = await ghFetch(
 		`https://api.github.com/repos/${repo}/releases/latest`
 	)
@@ -57,6 +89,7 @@ export async function getLatestRelease(repo) {
 
 // [{ login, avatarUrl, htmlUrl }]
 export async function getContributors(repo) {
+	if (DEV) return MOCK_CONTRIBUTORS()
 	const base = `https://api.github.com/repos/${repo}`
 
 	const [committers, prs] = await Promise.all([
@@ -85,6 +118,7 @@ export async function getContributors(repo) {
 
 // [{ version, items[] }]
 export async function getChangelog(repo) {
+	if (DEV) return MOCK_CHANGELOG()
 	const res = await fetch(
 		`https://raw.githubusercontent.com/${repo}/master/changelog.md`
 	)
@@ -120,6 +154,7 @@ export async function getChangelog(repo) {
 
 // { name, tag, stars, issues, downloads }
 export async function getRepoStats(repo) {
+	if (DEV) return MOCK_REPO_STATS(repo)
 	const base = `https://api.github.com/repos/${repo}`
 
 	const [repoData, latestRelease] = await Promise.all([
@@ -138,7 +173,7 @@ export async function getRepoStats(repo) {
 
 	return {
 		name: repo.split('/')[1].toUpperCase(),
- 		tag: latestRelease?.tag_name?.replace(/^v/, '') ?? '—',
+		tag: latestRelease?.tag_name?.replace(/^v/, '') ?? '—',
 		stars: repoData.stargazers_count ?? 0,
 		issues: repoData.open_issues_count ?? 0,
 		downloads,
