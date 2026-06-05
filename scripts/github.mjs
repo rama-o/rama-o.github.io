@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------------------
 
 // Set to true to skip all network calls and return mock data instead.
-export const DEV = true
+export const DEV = false
 
 // ---------------------------------------------------------------------------
 // Mock data (used when DEV = true)
