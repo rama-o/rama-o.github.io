@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1.0"
+		/>
+
+		<!-- Project Description -->
+		<meta
+			name="description"
+			content="Browse and download Mako's handcrafted wallpapers — clouds, mountains, and pond."
+		/>
+
+		<title>Rama — Mako Wallpapers</title>
+		<link
+			rel="preload"
+			href="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+			as="script"
+			crossorigin
+		/>
+		<script
+			type="module"
+			src="./js/component_loading.js"
+		></script>
+
+		<!-- Favicons -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="https://rama-io.github.io/img/favicon.svg"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="256x256"
+			href="https://rama-io.github.io/img/favicon_256x256.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="128x128"
+			href="https://rama-io.github.io/img/favicon_128x128.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="64x64"
+			href="https://rama-io.github.io/img/favicon_64x64.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="48x48"
+			href="https://rama-io.github.io/img/favicon_48x48.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="https://rama-io.github.io/img/favicon_32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="24x24"
+			href="https://rama-io.github.io/img/favicon_24x24.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="https://rama-io.github.io/img/favicon_16x16.png"
+		/>
+
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="https://rama-io.github.io/img/favicon_180x180.png"
+		/>
+
+		<meta
+			name="msapplication-TileColor"
+			content="#e9c200"
+		/>
+		<meta
+			name="msapplication-TileImage"
+			content="https://rama-io.github.io/img/favicon_128x128.png"
+		/>
+
+		<!-- Open Graph Metadata -->
+		<meta
+			property="og:title"
+			content="Rama — Mako Wallpapers"
+		/>
+		<meta
+			property="og:description"
+			content="Browse and download Mako's handcrafted wallpapers — clouds, mountains, and pond."
+		/>
+		<meta
+			property="og:site_name"
+			content="Rama"
+		/>
+		<meta
+			property="og:image:type"
+			content="image/png"
+		/>
+		<meta
+			property="og:image:width"
+			content="1200"
+		/>
+		<meta
+			property="og:image:height"
+			content="630"
+		/>
+
+		<!-- Scripts & Styles -->
+		<script
+			type="module"
+			src="./js/head.js"
+		></script>
+		<link
+			rel="stylesheet"
+			href="./css/rama.css"
+		/>
+	</head>
+
+	<body class="mako">
+		<rama-loading
+			blocking-request="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+		>
+		</rama-loading>
+
+		<nav>
+			<nn-caja padding="1rem">
+				<div class="nav-controls">
+					<ul>
+						<li>
+							<a
+								target="_self"
+								href="/"
+								class="logo"
+							>
+								Rama
+							</a>
+						</li>
+
+						<li class="searchbar-area"></li>
+
+						<li>
+							<a
+								target="_self"
+								href="mako.html"
+							>
+								Mako
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="txori.html"
+							>
+								Txori
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="tui.html"
+							>
+								Tui
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nn-caja>
+		</nav>
+
+		<main>
+			<header>
+				<img
+					src="https://raw.githubusercontent.com/rama-io/mako/master/docs/img/mako_header_1200x630.svg"
+				/>
+			</header>
+
+			<nn-caja
+				max-width="1000px"
+				padding="1rem"
+			>
+				<h1>Wallpapers</h1>
+
+				<p>
+					Mako ships with a set of handcrafted wallpapers. There's no built-in
+					picker to keep the launcher lean, so here they are — preview them,
+					find your favorite, then set it from the app's wallpaper settings.
+				</p>
+
+				<label class="mockup-toggle">
+					<input
+						type="checkbox"
+						id="mockup-toggle"
+						checked
+					/>
+					<span>Show Overlay</span>
+				</label>
+
+				<div
+					class="carousel"
+					id="carousel"
+				>
+					<button
+						class="carousel-arrow carousel-prev"
+						id="carousel-prev"
+						aria-label="Previous"
+					>
+						‹
+					</button>
+
+					<div class="carousel-viewport">
+						<div
+							class="carousel-track"
+							id="carousel-track"
+						></div>
+					</div>
+
+					<button
+						class="carousel-arrow carousel-next"
+						id="carousel-next"
+						aria-label="Next"
+					>
+						›
+					</button>
+				</div>
+			</nn-caja>
+		</main>
+
+		<div
+			id="lightbox"
+			class="lightbox hidden"
+		>
+			<span class="lightbox-close">&times;</span>
+			<img
+				id="lightbox-img"
+				src=""
+				alt=""
+			/>
+		</div>
+
+		<rama-footer></rama-footer>
+
+		<script>
+			;(function () {
+				var carousel = document.getElementById('carousel')
+				var track = document.getElementById('carousel-track')
+				var prevBtn = document.getElementById('carousel-prev')
+				var nextBtn = document.getElementById('carousel-next')
+				var lightbox = document.getElementById('lightbox')
+				var lightboxImg = document.getElementById('lightbox-img')
+				var lightboxClose = document.querySelector('.lightbox-close')
+				var mockupToggle = document.getElementById('mockup-toggle')
+
+				/* PLEASE INCREASE THIS VALUE IF YOU ADD MORE WALLPAPERS, IF YOU INCREASE MORE IT WILL SHOW THE OVERLAY ONLY */
+				var WALLPAPER_COUNT = 3
+				var currentIndex = 0
+				var itemsPerView = window.innerWidth >= 992 ? 3 : 1
+				var gap = 24
+
+				function buildSlides() {
+					for (var i = 1; i <= WALLPAPER_COUNT; i++) {
+						var path = 'img/wallpapers/wallpaper_' + i + '.png'
+						var slide = document.createElement('div')
+						slide.className = 'carousel-slide'
+						slide.dataset.wallpaper = path
+
+						var preview = document.createElement('div')
+						preview.className = 'wallpaper-preview'
+						preview.style.backgroundImage = "url('" + path + "')"
+
+						var overlay = document.createElement('img')
+						overlay.src = 'img/wallpapers/mockup.png'
+						overlay.alt = ''
+						preview.appendChild(overlay)
+
+						var name = document.createElement('span')
+						name.className = 'wallpaper-name'
+						name.textContent = 'Wallpaper ' + i
+
+						var btn = document.createElement('a')
+						btn.href = path
+						btn.download = ''
+						btn.className = 'nn-btn'
+						btn.textContent = 'Download'
+
+						slide.appendChild(preview)
+						slide.appendChild(name)
+						slide.appendChild(btn)
+						track.appendChild(slide)
+					}
+				}
+
+				buildSlides()
+				var slides = track.children
+				var total = slides.length
+
+				function getSlideWidth() {
+					var viewport = track.parentElement
+					var gapTotal = gap * (itemsPerView - 1)
+					return (viewport.offsetWidth - gapTotal) / itemsPerView
+				}
+
+				function updateArrowsVisibility() {
+					var allFit = total <= itemsPerView
+					carousel.classList.toggle('arrows-hidden', allFit)
+				}
+
+				function render() {
+					var slideW = getSlideWidth()
+					for (var i = 0; i < total; i++) {
+						slides[i].style.width = slideW + 'px'
+					}
+					var offset = currentIndex * (slideW + gap)
+					track.style.transform = 'translateX(-' + offset + 'px)'
+
+					prevBtn.disabled = currentIndex === 0
+					nextBtn.disabled = currentIndex >= total - itemsPerView
+
+					updateArrowsVisibility()
+				}
+
+				prevBtn.addEventListener('click', function () {
+					if (currentIndex > 0) {
+						currentIndex--
+						render()
+					}
+				})
+
+				nextBtn.addEventListener('click', function () {
+					if (currentIndex < total - itemsPerView) {
+						currentIndex++
+						render()
+					}
+				})
+
+				window.addEventListener('resize', function () {
+					var newPerView = window.innerWidth >= 992 ? 3 : 1
+					if (newPerView !== itemsPerView) {
+						itemsPerView = newPerView
+						currentIndex = 0
+					}
+					render()
+				})
+
+				mockupToggle.addEventListener('change', function () {
+					carousel.classList.toggle('hide-mockup', !this.checked)
+				})
+
+				function closeLightbox() {
+					lightbox.classList.add('hidden')
+				}
+
+				for (var i = 0; i < total; i++) {
+					;(function (slide) {
+						slide.addEventListener('click', function (e) {
+							if (e.target.closest('.nn-btn')) return
+							lightboxImg.src = this.dataset.wallpaper
+							lightbox.classList.remove('hidden')
+						})
+					})(slides[i])
+				}
+
+				lightbox.addEventListener('click', function (e) {
+					if (e.target === this) closeLightbox()
+				})
+
+				lightboxClose.addEventListener('click', closeLightbox)
+
+				document.addEventListener('keydown', function (e) {
+					if (e.key === 'Escape') closeLightbox()
+				})
+
+				render()
+			})()
+		</script>
+	</body>
+</html>
