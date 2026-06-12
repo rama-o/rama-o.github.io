@@ -35,6 +35,7 @@ export const REPOS = {
 	mako: 'rama-io/mako',
 	txori: 'rama-io/txori',
 	tui: 'rama-io/tui',
+	teyin: 'rama-io/teyin',
 }
 
 export const HEADERS = {
