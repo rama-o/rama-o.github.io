@@ -132,6 +132,7 @@ const BADGE_FILES = {
 	mako: '../img/badge_mako.svg',
 	txori: '../img/badge_txori.svg',
 	tui: '../img/badge_tui.svg',
+	teyin: '../img/badge_teyin.svg',
 }
 
 function formatNum(n) {
