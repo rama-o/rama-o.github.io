@@ -3,9 +3,10 @@ import { resolve } from 'node:path'
 import { getContributors, getChangelog } from './scripts/github.mjs'
 
 const PAGES = [
-	{ file: 'mako.html',  app: 'mako' },
+	{ file: 'mako.html', app: 'mako' },
 	{ file: 'txori.html', app: 'txori' },
-	{ file: 'tui.html',   app: 'tui' },
+	{ file: 'tui.html', app: 'tui' },
+	{ file: 'teyin.html', app: 'teyin' },
 	{ file: 'index.html', index: true },
 ]
 
@@ -19,7 +20,7 @@ function formatName(name) {
 
 function patchRelease(html, release, app) {
 	const version = release.tag.replace(/^v/, '')
-	const label   = `Download ${formatName(app)} ${version}`
+	const label = `Download ${formatName(app)} ${version}`
 
 	return html.replace(
 		/<a([^>]*\bdownload\b[^>]*)>([\s\S]*?)<\/a>/,
@@ -39,7 +40,7 @@ function patchIndexButtons(html, releases) {
 			const appMatch = attrs.match(/data-app="([^"]+)"/)
 			if (!appMatch) return match
 
-			const app     = appMatch[1]
+			const app = appMatch[1]
 			const release = releases[app]
 
 			if (!release?.apkUrl) {
@@ -47,8 +48,8 @@ function patchIndexButtons(html, releases) {
 				return match
 			}
 
-			const version  = release.tag.replace(/^v/, '')
-			const label    = `Download ${formatName(app)} ${version}`
+			const version = release.tag.replace(/^v/, '')
+			const label = `Download ${formatName(app)} ${version}`
 			const newAttrs = attrs.replace(/href="[^"]*"/, `href="${release.apkUrl}"`)
 			return `<a${newAttrs}>${label}</a>`
 		}
@@ -56,12 +57,16 @@ function patchIndexButtons(html, releases) {
 }
 
 function patchContributors(html, contributors) {
-	const items = contributors.map(c => `
+	const items = contributors
+		.map(
+			c => `
 				<li>
 					<a href="${c.htmlUrl}" target="_blank">
 						<img src="${c.avatarUrl}" title="${c.login}" />
 					</a>
-				</li>`).join('')
+				</li>`
+		)
+		.join('')
 
 	return html.replace(
 		/<ul class="avatars">[\s\S]*?<\/ul>/,
@@ -70,12 +75,16 @@ function patchContributors(html, contributors) {
 }
 
 function patchChangelog(html, versions) {
-	const sections = versions.map(v => `<section>
+	const sections = versions
+		.map(
+			v => `<section>
 				<h3>${v.version}</h3>
 				<ul>
 					${v.items.map(i => `<li>${i}</li>`).join('')}
 				</ul>
-			</section>`).join('')
+			</section>`
+		)
+		.join('')
 
 	return html.replace(
 		/(<h2>Changelog<\/h2>\s*)[\s\S]*?(<\/nn-caja>)/,
@@ -100,7 +109,7 @@ export async function patchAllHtml(rootDir, repos, releases) {
 			continue
 		}
 
-		const app     = page.app
+		const app = page.app
 		const release = releases[app]
 
 		if (!release) {
