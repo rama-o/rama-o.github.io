@@ -275,6 +275,14 @@ nn-caja {
 	gap: 2rem;
 }
 
+.wallpapers {
+	nn-pilar {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+}
+
 .avatars {
 	list-style: none;
 	padding: 0;
