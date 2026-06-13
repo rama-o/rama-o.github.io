@@ -275,6 +275,38 @@ nn-caja {
 	gap: 2rem;
 }
 
+.wallpapers {
+	nn-pilar {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+
+		&:hover {
+			.composition {
+				&::before {
+					opacity: 0;
+				}
+			}
+		}
+	}
+
+	.composition {
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			background: url('/img/wallpapers/mockup.png') center center no-repeat;
+			background-size: cover;
+			transition: opacity 500ms;
+		}
+	}
+}
+
 .avatars {
 	list-style: none;
 	padding: 0;
