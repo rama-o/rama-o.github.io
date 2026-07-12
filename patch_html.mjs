@@ -7,6 +7,7 @@ const PAGES = [
 	{ file: 'txori.html', app: 'txori' },
 	{ file: 'tui.html', app: 'tui' },
 	{ file: 'teyin.html', app: 'teyin' },
+	{ file: 'okapi.html', app: 'okapi' },
 	{ file: 'index.html', index: true },
 ]
 

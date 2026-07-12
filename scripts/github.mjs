@@ -16,7 +16,11 @@ const MOCK_RELEASE = repo => ({
 })
 
 const MOCK_CONTRIBUTORS = () => [
-	{ login: 'dev-user', avatarUrl: 'https://avatars.githubusercontent.com/u/0?s=45', htmlUrl: 'https://github.com' },
+	{
+		login: 'dev-user',
+		avatarUrl: 'https://avatars.githubusercontent.com/u/0?s=45',
+		htmlUrl: 'https://github.com',
+	},
 ]
 
 const MOCK_CHANGELOG = () => [
@@ -36,6 +40,7 @@ export const REPOS = {
 	txori: 'rama-io/txori',
 	tui: 'rama-io/tui',
 	teyin: 'rama-io/teyin',
+	okapi: 'rama-io/okapi',
 }
 
 export const HEADERS = {
