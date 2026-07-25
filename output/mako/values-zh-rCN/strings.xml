@@ -71,10 +71,10 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="double_tap_sleep_enable_admin_toast">启用设备管理员权限，以便双击进入睡眠模式</string>
     <string name="double_tap_sleep_failed_toast">Unable to lock the screen</string>
     <string name="double_tap_sleep_label">Double tap to sleep</string>
-    <string name="easter_eggs_counter">{0, number} more...</string>
+    <string name="easter_eggs_counter">%1$d more...</string>
     <string name="easter_eggs_unlock">Can you please stop playing with it xD</string>
     <string name="filepicker_icon_pack_not_selected">未选择图标包</string>
-    <string name="filepicker_selected_icon_pack">Selected pack: {0}</string>
+    <string name="filepicker_selected_icon_pack">Selected pack: %1$s</string>
     <string name="h2_delete_group">您确定删除此群组吗？</string>
     <string name="h2_rename_app">Rename app</string>
     <string name="h2_select_group">Select Group</string>
@@ -91,10 +91,10 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="hint_search_apps">搜索应用...</string>
     <string name="label_screen_opacity_strength">桌面透明度</string>
     <string name="multi_select_cancel">Cancel</string>
-    <string name="multi_select_count">{0, number} selected</string>
+    <string name="multi_select_count">%1$d selected</string>
     <string name="multi_select_move_to_group">Move to group</string>
     <string name="new_group_header">------ 新群组</string>
-    <string name="new_group_header_count">------ 新群组{0, number}</string>
+    <string name="new_group_header_count">------ 新群组%1$d</string>
     <string name="privacy_space_row_locked">🔒 解锁私人空间</string>
     <string name="privacy_space_row_unlocked">🔓 锁定私人空间</string>
     <string name="radio_background_wallpaper">在桌面显示壁纸</string>
@@ -114,12 +114,12 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="temp_critical">Critical</string>
     <string name="temp_hot">Hot</string>
     <string name="temp_warm">Warm</string>
-    <string name="toast_clock_app_selected">Selected: {0}</string>
-    <string name="toast_date_app_selected">Selected: {0}</string>
+    <string name="toast_clock_app_selected">Selected: %1$s</string>
+    <string name="toast_date_app_selected">Selected: %1$s</string>
     <string name="toast_group_label_updated">Label Updated</string>
     <string name="toast_heal_data_done">Data healed successfully</string>
     <string name="toast_heal_data_unchanged">No stale data found</string>
-    <string name="toast_icon_pack_selected">Selected icon pack: {0}</string>
+    <string name="toast_icon_pack_selected">Selected icon pack: %1$s</string>
     <string name="toast_import_done">导入成功</string>
     <string name="toast_import_failed">导入失败</string>
     <string name="toast_label_changed">App label updated</string>
@@ -137,4 +137,7 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="toast_unable_open_wallpaper_app">No wallpaper app available</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column"></string>
+    <string name="checkbox_show_api_indicators"></string>
+    <string name="checkbox_show_app_size"></string>
 </resources>

@@ -14,10 +14,10 @@
     <string name="altdescr_toggle_pin_visibility">Toggle PIN visibility</string>
     <string name="app_desc">A lightweight, distraction-free Android launcher that’s privacy-first and entirely on-device, designed for focus and simplicity.</string>
     <string name="app_name" translatable="false">@string/product_mako</string>
-    <string name="battery_status_power" translatable="false">{0} {1, number}x</string>
-    <string name="battery_status_power_type" translatable="false">{0} ({1}) {2, number}x</string>
-    <string name="battery_temp" translatable="false">{0, number}°{1}</string>
-    <string name="battery_temp_labeled" translatable="false">{0, number}°{1} ({2})</string>
+    <string name="battery_status_power" translatable="false">%1$s %2$dx</string>
+    <string name="battery_status_power_type" translatable="false">%1$s (%2$s) %3$dx</string>
+    <string name="battery_temp" translatable="false">%1$d°%2$s</string>
+    <string name="battery_temp_labeled" translatable="false">%1$d°%2$s (%3$s)</string>
     <string name="btn_about_mako">About Mako</string>
     <string name="btn_add_group">+ Add New Group</string>
     <string name="btn_change_wallpaper">Change OS wallpaper</string>
@@ -78,10 +78,10 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="double_tap_sleep_enable_admin_toast">Enable device admin access for double tap to sleep</string>
     <string name="double_tap_sleep_failed_toast">Unable to lock the screen</string>
     <string name="double_tap_sleep_label">Double tap to sleep</string>
-    <string name="easter_eggs_counter">{0, number} more...</string>
+    <string name="easter_eggs_counter">%1$d more...</string>
     <string name="easter_eggs_unlock">Can you please stop playing with it xD</string>
     <string name="filepicker_icon_pack_not_selected">No icon pack selected</string>
-    <string name="filepicker_selected_icon_pack">Selected pack: {0}</string>
+    <string name="filepicker_selected_icon_pack">Selected pack: %1$s</string>
     <string name="h2_delete_group">Are you sure you want to delete this group?</string>
     <string name="h2_rename_app">Rename app</string>
     <string name="h2_select_group">Select Group</string>
@@ -98,10 +98,10 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="hint_search_apps">Search apps...</string>
     <string name="label_screen_opacity_strength">Screen opacity strength</string>
     <string name="multi_select_cancel">Cancel</string>
-    <string name="multi_select_count">{0, number} selected</string>
+    <string name="multi_select_count">%1$d selected</string>
     <string name="multi_select_move_to_group">Move to group</string>
     <string name="new_group_header">------ New Group</string>
-    <string name="new_group_header_count">------ New Group {0, number}</string>
+    <string name="new_group_header_count">------ New Group %1$d</string>
     <string name="privacy_space_row_locked">🔒 Unlock Private Space</string>
     <string name="privacy_space_row_unlocked">🔓 Lock Private Space</string>
     <string name="radio_background_wallpaper">Show Wallpaper on Home Screen</string>
@@ -121,12 +121,12 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="temp_critical">Critical</string>
     <string name="temp_hot">Hot</string>
     <string name="temp_warm">Warm</string>
-    <string name="toast_clock_app_selected">Selected: {0}</string>
-    <string name="toast_date_app_selected">Selected: {0}</string>
+    <string name="toast_clock_app_selected">Selected: %1$s</string>
+    <string name="toast_date_app_selected">Selected: %1$s</string>
     <string name="toast_group_label_updated">Label Updated</string>
     <string name="toast_heal_data_done">Data healed successfully</string>
     <string name="toast_heal_data_unchanged">No stale data found</string>
-    <string name="toast_icon_pack_selected">Selected icon pack: {0}</string>
+    <string name="toast_icon_pack_selected">Selected icon pack: %1$s</string>
     <string name="toast_import_done">Import successful</string>
     <string name="toast_import_failed">Import failed</string>
     <string name="toast_label_changed">App label updated</string>
@@ -144,4 +144,7 @@ Biometric unlock (fingerprint) may not work.</string>
     <string name="toast_unable_open_wallpaper_app">No wallpaper app available</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column">Multi-column layout</string>
+    <string name="checkbox_show_api_indicators">Show min/target API levels</string>
+    <string name="checkbox_show_app_size">Show app size</string>
 </resources>

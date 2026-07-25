@@ -71,10 +71,10 @@ Sormenjäljellä ja kasvoilla avaaminen ei välttämättä toimi.</string>
     <string name="double_tap_sleep_enable_admin_toast">Myönnä järjestelmänvalvojan oikeudet sammuttamiseen kahdesti koskettamalla</string>
     <string name="double_tap_sleep_failed_toast">Näytön lukitus ei onnistunut</string>
     <string name="double_tap_sleep_label">Sammuta näyttö koskettamalla kahdesti</string>
-    <string name="easter_eggs_counter">{0, number} lisää…</string>
+    <string name="easter_eggs_counter">%1$d lisää…</string>
     <string name="easter_eggs_unlock">Lopeta se leikkiminen xD</string>
     <string name="filepicker_icon_pack_not_selected">Kuvakepakettia ei ole valittu</string>
-    <string name="filepicker_selected_icon_pack">Valittu paketti: {0}</string>
+    <string name="filepicker_selected_icon_pack">Valittu paketti: %1$s</string>
     <string name="h2_delete_group">Haluatko varmasti poistaa tämän ryhmän?</string>
     <string name="h2_rename_app">Nimeä sovellus uudelleen</string>
     <string name="h2_select_group">Valitse ryhmä</string>
@@ -91,10 +91,10 @@ Sormenjäljellä ja kasvoilla avaaminen ei välttämättä toimi.</string>
     <string name="hint_search_apps">Hae sovelluksia…</string>
     <string name="label_screen_opacity_strength">Läpinäkyvyyden vahvuus</string>
     <string name="multi_select_cancel">Peruuta</string>
-    <string name="multi_select_count">{0, number} valittu</string>
+    <string name="multi_select_count">%1$d valittu</string>
     <string name="multi_select_move_to_group">Siirrä ryhmään</string>
     <string name="new_group_header">------ Uusi ryhmä</string>
-    <string name="new_group_header_count">------ Uusi ryhmä {0, number}</string>
+    <string name="new_group_header_count">------ Uusi ryhmä %1$d</string>
     <string name="privacy_space_row_locked">🔒 Avaa yksityinen tila</string>
     <string name="privacy_space_row_unlocked">🔓 Lukitse yksityinen tila</string>
     <string name="radio_background_wallpaper">Näytä taustakuva kotinäytössä</string>
@@ -114,12 +114,12 @@ Sormenjäljellä ja kasvoilla avaaminen ei välttämättä toimi.</string>
     <string name="temp_critical">Kriittinen</string>
     <string name="temp_hot">Kuuma</string>
     <string name="temp_warm">Lämmin</string>
-    <string name="toast_clock_app_selected">Valittu: {0}</string>
-    <string name="toast_date_app_selected">Valittu: {0}</string>
+    <string name="toast_clock_app_selected">Valittu: %1$s</string>
+    <string name="toast_date_app_selected">Valittu: %1$s</string>
     <string name="toast_group_label_updated">Nimike tallennettu</string>
     <string name="toast_heal_data_done">Tietojen korjaus onnistui</string>
     <string name="toast_heal_data_unchanged">Ei korjattavia tietoja</string>
-    <string name="toast_icon_pack_selected">Valittu kuvakepaketti: {0}</string>
+    <string name="toast_icon_pack_selected">Valittu kuvakepaketti: %1$s</string>
     <string name="toast_import_done">Tuonti onnistui</string>
     <string name="toast_import_failed">Tuonti epäonnistui</string>
     <string name="toast_label_changed">Sovelluksen nimike tallennettu</string>
@@ -137,4 +137,7 @@ Sormenjäljellä ja kasvoilla avaaminen ei välttämättä toimi.</string>
     <string name="toast_unable_open_wallpaper_app">Sovellusta taustakuville ei löytynyt</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column"></string>
+    <string name="checkbox_show_api_indicators"></string>
+    <string name="checkbox_show_app_size"></string>
 </resources>

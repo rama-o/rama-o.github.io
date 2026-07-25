@@ -71,10 +71,10 @@ Biometrische Entsperrung (Fingerabdruck) ggf. nicht unterstützt.</string>
     <string name="double_tap_sleep_enable_admin_toast">Aktiviere Geräteadministrator für Doppeltippen zum Sperren</string>
     <string name="double_tap_sleep_failed_toast">Bildschirm konnte nicht gesperrt werden</string>
     <string name="double_tap_sleep_label">Doppeltippen zum Sperren</string>
-    <string name="easter_eggs_counter">Noch {0, number}...</string>
+    <string name="easter_eggs_counter">Noch %1$d...</string>
     <string name="easter_eggs_unlock">Kannst du bitte aufhören damit zu spielen xD</string>
     <string name="filepicker_icon_pack_not_selected">Kein Icon-Paket ausgewählt</string>
-    <string name="filepicker_selected_icon_pack">Ausgewähltes Paket: {0}</string>
+    <string name="filepicker_selected_icon_pack">Ausgewähltes Paket: %1$s</string>
     <string name="h2_delete_group">Sind Sie sicher, dass Sie die Gruppe entfernen möchten?</string>
     <string name="h2_rename_app">App umbenennen</string>
     <string name="h2_select_group">Gruppe auswählen</string>
@@ -91,10 +91,10 @@ Biometrische Entsperrung (Fingerabdruck) ggf. nicht unterstützt.</string>
     <string name="hint_search_apps">Nach Apps suchen...</string>
     <string name="label_screen_opacity_strength">Bildschirmdeckkraft</string>
     <string name="multi_select_cancel">Abbrechen</string>
-    <string name="multi_select_count">{0, number} ausgewählt</string>
+    <string name="multi_select_count">%1$d ausgewählt</string>
     <string name="multi_select_move_to_group">In Gruppe verschieben</string>
     <string name="new_group_header">------ Neue Gruppe</string>
-    <string name="new_group_header_count">------ Neue Gruppe {0, number}</string>
+    <string name="new_group_header_count">------ Neue Gruppe %1$d</string>
     <string name="privacy_space_row_locked"></string>
     <string name="privacy_space_row_unlocked"></string>
     <string name="radio_background_wallpaper">Hintergrundbild</string>
@@ -114,12 +114,12 @@ Biometrische Entsperrung (Fingerabdruck) ggf. nicht unterstützt.</string>
     <string name="temp_critical">Kritisch</string>
     <string name="temp_hot">Heiß</string>
     <string name="temp_warm">Warm</string>
-    <string name="toast_clock_app_selected">Ausgewählt: {0}</string>
-    <string name="toast_date_app_selected">Ausgewählt: {0}</string>
+    <string name="toast_clock_app_selected">Ausgewählt: %1$s</string>
+    <string name="toast_date_app_selected">Ausgewählt: %1$s</string>
     <string name="toast_group_label_updated">Label aktualisiert</string>
     <string name="toast_heal_data_done">Daten erfolgreich repariert</string>
     <string name="toast_heal_data_unchanged">Keine veralteten Daten gefunden</string>
-    <string name="toast_icon_pack_selected">Ausgewähltes Icon-Paket: {0}</string>
+    <string name="toast_icon_pack_selected">Ausgewähltes Icon-Paket: %1$s</string>
     <string name="toast_import_done">Import erfolgreich</string>
     <string name="toast_import_failed">Import fehlgeschlagen</string>
     <string name="toast_label_changed">App-Bezeichnung aktualisiert</string>
@@ -137,4 +137,7 @@ Biometrische Entsperrung (Fingerabdruck) ggf. nicht unterstützt.</string>
     <string name="toast_unable_open_wallpaper_app">Keine Wallpaper-App verfügbar</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column"></string>
+    <string name="checkbox_show_api_indicators"></string>
+    <string name="checkbox_show_app_size"></string>
 </resources>

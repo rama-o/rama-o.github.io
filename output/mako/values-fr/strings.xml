@@ -71,10 +71,10 @@ Le déverrouillage biométrique (empreinte digitale) peut ne pas fonctionner.</s
     <string name="double_tap_sleep_enable_admin_toast">Activez l\'accès administrateur de l\'appareil pour le double appui</string>
     <string name="double_tap_sleep_failed_toast">Impossible de verrouiller l\'écran</string>
     <string name="double_tap_sleep_label">Double appui pour éteindre l\'écran</string>
-    <string name="easter_eggs_counter">Encore {0, number}...</string>
+    <string name="easter_eggs_counter">Encore %1$d...</string>
     <string name="easter_eggs_unlock">Tu peux arrêter de jouer avec xD</string>
     <string name="filepicker_icon_pack_not_selected">Aucun pack d\'icônes sélectionné</string>
-    <string name="filepicker_selected_icon_pack">Pack sélectionné : {0}</string>
+    <string name="filepicker_selected_icon_pack">Pack sélectionné : %1$s</string>
     <string name="h2_delete_group">Voulez-vous vraiment supprimer ce groupe ?</string>
     <string name="h2_rename_app">Renommer l\'application</string>
     <string name="h2_select_group">Sélectionner un groupe</string>
@@ -91,10 +91,10 @@ Le déverrouillage biométrique (empreinte digitale) peut ne pas fonctionner.</s
     <string name="hint_search_apps">Rechercher des applications...</string>
     <string name="label_screen_opacity_strength">Opacité de l\'écran</string>
     <string name="multi_select_cancel">Annuler</string>
-    <string name="multi_select_count">{0, number} sélectionnés</string>
+    <string name="multi_select_count">%1$d sélectionnés</string>
     <string name="multi_select_move_to_group">Déplacer vers le groupe</string>
     <string name="new_group_header">------ Nouveau groupe</string>
-    <string name="new_group_header_count">------ Nouveau groupe {0, number}</string>
+    <string name="new_group_header_count">------ Nouveau groupe %1$d</string>
     <string name="privacy_space_row_locked"></string>
     <string name="privacy_space_row_unlocked"></string>
     <string name="radio_background_wallpaper">Afficher le fond d\'écran</string>
@@ -114,12 +114,12 @@ Le déverrouillage biométrique (empreinte digitale) peut ne pas fonctionner.</s
     <string name="temp_critical">Critique</string>
     <string name="temp_hot">Très chaud</string>
     <string name="temp_warm">Chaud</string>
-    <string name="toast_clock_app_selected">Sélectionné : {0}</string>
-    <string name="toast_date_app_selected">Sélectionné : {0}</string>
+    <string name="toast_clock_app_selected">Sélectionné : %1$s</string>
+    <string name="toast_date_app_selected">Sélectionné : %1$s</string>
     <string name="toast_group_label_updated">Libellé mis à jour</string>
     <string name="toast_heal_data_done"></string>
     <string name="toast_heal_data_unchanged"></string>
-    <string name="toast_icon_pack_selected">Pack d\'icônes sélectionné : {0}</string>
+    <string name="toast_icon_pack_selected">Pack d\'icônes sélectionné : %1$s</string>
     <string name="toast_import_done">Importation réussie</string>
     <string name="toast_import_failed">Échec de l\'importation</string>
     <string name="toast_label_changed">Libellé de l\'application mis à jour</string>
@@ -137,4 +137,7 @@ Le déverrouillage biométrique (empreinte digitale) peut ne pas fonctionner.</s
     <string name="toast_unable_open_wallpaper_app">Aucune application de fond d\'écran disponible</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column"></string>
+    <string name="checkbox_show_api_indicators"></string>
+    <string name="checkbox_show_app_size"></string>
 </resources>

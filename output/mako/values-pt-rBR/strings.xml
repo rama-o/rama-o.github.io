@@ -68,10 +68,10 @@
     <string name="double_tap_sleep_enable_admin_toast">Ative o acesso do administrador do dispositivo para toque duplo para dormir</string>
     <string name="double_tap_sleep_failed_toast">Não é possível bloquear a tela</string>
     <string name="double_tap_sleep_label">Toque duplo para bloquear</string>
-    <string name="easter_eggs_counter">{0, number} mais...</string>
+    <string name="easter_eggs_counter">%1$d mais...</string>
     <string name="easter_eggs_unlock">Pode, por favor, parar de brincar com ele xD</string>
     <string name="filepicker_icon_pack_not_selected">Nenhum pacote de ícones selecionado</string>
-    <string name="filepicker_selected_icon_pack">Pacote selecionado: {0}</string>
+    <string name="filepicker_selected_icon_pack">Pacote selecionado: %1$s</string>
     <string name="h2_delete_group">Tem certeza de que deseja excluir esse grupo?</string>
     <string name="h2_rename_app">Renomear App</string>
     <string name="h2_select_group">Selecionar Grupo</string>
@@ -88,10 +88,10 @@
     <string name="hint_search_apps">Pesquisar Apps</string>
     <string name="label_screen_opacity_strength">Nível de Opacidade da tela</string>
     <string name="multi_select_cancel">Cancelar</string>
-    <string name="multi_select_count">{0, number} selecionado</string>
+    <string name="multi_select_count">%1$d selecionado</string>
     <string name="multi_select_move_to_group">Mover para o Grupo</string>
     <string name="new_group_header">------ Novo Grupo</string>
-    <string name="new_group_header_count">------ Novo Grupo {0, number}</string>
+    <string name="new_group_header_count">------ Novo Grupo %1$d</string>
     <string name="privacy_space_row_locked">🔒 Desbloquear Espaço Privado</string>
     <string name="privacy_space_row_unlocked">🔓 Bloquear Espaço Privado</string>
     <string name="radio_background_wallpaper">Mostrar papel de parede na tela inicial</string>
@@ -111,12 +111,12 @@
     <string name="temp_critical">Crítico</string>
     <string name="temp_hot">Quente</string>
     <string name="temp_warm">Morno</string>
-    <string name="toast_clock_app_selected">Selecionado: {0}</string>
-    <string name="toast_date_app_selected">Selecionado: {0}</string>
+    <string name="toast_clock_app_selected">Selecionado: %1$s</string>
+    <string name="toast_date_app_selected">Selecionado: %1$s</string>
     <string name="toast_group_label_updated">Etiqueta atualizada</string>
     <string name="toast_heal_data_done">Dados recuperados com sucesso</string>
     <string name="toast_heal_data_unchanged">Nenhum dado obsoleto encontrado</string>
-    <string name="toast_icon_pack_selected">Pacote de ícones selecionado: {0}</string>
+    <string name="toast_icon_pack_selected">Pacote de ícones selecionado: %1$s</string>
     <string name="toast_import_done">Importação com sucesso</string>
     <string name="toast_import_failed">A importação falhou</string>
     <string name="toast_label_changed">Etiqueta do aplicativo atualizado</string>
@@ -134,4 +134,7 @@
     <string name="toast_unable_open_wallpaper_app">Nenhum aplicativo de papel de parede disponível</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column"></string>
+    <string name="checkbox_show_api_indicators"></string>
+    <string name="checkbox_show_app_size"></string>
 </resources>

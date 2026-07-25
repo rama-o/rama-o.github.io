@@ -71,10 +71,10 @@ Maaaring hindi gumana ang biometric unlock (fingerprint).</string>
     <string name="double_tap_sleep_enable_admin_toast">I-enable ang access sa device admin para sa double tap to sleep</string>
     <string name="double_tap_sleep_failed_toast">Hindi ma-lock ang screen</string>
     <string name="double_tap_sleep_label">Double tap para matulog</string>
-    <string name="easter_eggs_counter">{0, number} pa...</string>
+    <string name="easter_eggs_counter">%1$d pa...</string>
     <string name="easter_eggs_unlock">Pwede bang tumigil ka sa paglalaro dito xD</string>
     <string name="filepicker_icon_pack_not_selected">Walang napiling icon pack</string>
-    <string name="filepicker_selected_icon_pack">Napiling pack: {0}</string>
+    <string name="filepicker_selected_icon_pack">Napiling pack: %1$s</string>
     <string name="h2_delete_group">Sigurado ka bang gusto mong tanggalin ang grupong ito?</string>
     <string name="h2_rename_app">Palitan ang pangalan ng app</string>
     <string name="h2_select_group">Pumili ng Grupo</string>
@@ -91,10 +91,10 @@ Maaaring hindi gumana ang biometric unlock (fingerprint).</string>
     <string name="hint_search_apps">Maghanap ng app...</string>
     <string name="label_screen_opacity_strength">Lakas ng opacity ng screen</string>
     <string name="multi_select_cancel">Kanselahin</string>
-    <string name="multi_select_count">{0, number} napili</string>
+    <string name="multi_select_count">%1$d napili</string>
     <string name="multi_select_move_to_group">Ilipat sa grupo</string>
     <string name="new_group_header">------ Bagong Grupo</string>
-    <string name="new_group_header_count">------ Bagong Grupo {0, number}</string>
+    <string name="new_group_header_count">------ Bagong Grupo %1$d</string>
     <string name="privacy_space_row_locked">🔒 I-unlock ang Private Space</string>
     <string name="privacy_space_row_unlocked">🔓 I-lock ang Private Space</string>
     <string name="radio_background_wallpaper">Ipakita ang Wallpaper sa Home Screen</string>
@@ -114,12 +114,12 @@ Maaaring hindi gumana ang biometric unlock (fingerprint).</string>
     <string name="temp_critical">Kritikal</string>
     <string name="temp_hot">Mainit</string>
     <string name="temp_warm">Mainit-init</string>
-    <string name="toast_clock_app_selected">Napili: {0}</string>
-    <string name="toast_date_app_selected">Napili: {0}</string>
+    <string name="toast_clock_app_selected">Napili: %1$s</string>
+    <string name="toast_date_app_selected">Napili: %1$s</string>
     <string name="toast_group_label_updated">Na-update ang Label</string>
     <string name="toast_heal_data_done">Matagumpay na na-ayos ang data</string>
     <string name="toast_heal_data_unchanged">Walang nakitang lumang data</string>
-    <string name="toast_icon_pack_selected">Napiling icon pack: {0}</string>
+    <string name="toast_icon_pack_selected">Napiling icon pack: %1$s</string>
     <string name="toast_import_done">Matagumpay ang pag-import</string>
     <string name="toast_import_failed">Nabigo ang pag-import</string>
     <string name="toast_label_changed">Na-update ang label ng app</string>
@@ -137,4 +137,7 @@ Maaaring hindi gumana ang biometric unlock (fingerprint).</string>
     <string name="toast_unable_open_wallpaper_app">Walang available na wallpaper app</string>
     <string name="unit_celsius">C</string>
     <string name="unit_fahrenheit">F</string>
+    <string name="checkbox_multi_column"></string>
+    <string name="checkbox_show_api_indicators"></string>
+    <string name="checkbox_show_app_size"></string>
 </resources>

@@ -41,6 +41,15 @@ function escapeXml(text) {
 		.replace(/>/g, '&gt;')
 }
 
+function convertIcuToAndroid(str) {
+  return String(str)
+    // numbered values
+    .replace(/\{(\d+),\s*number\}/g, (_, i) => `%${Number(i) + 1}$d`)
+
+    // plain placeholders
+    .replace(/\{(\d+)\}/g, (_, i) => `%${Number(i) + 1}$s`);
+}
+
 async function downloadCsv(url) {
 	const res = await fetch(url)
 
@@ -80,7 +89,7 @@ async function processSheet(sheet) {
 				continue
 			}
 
-			const value = escapeXml(row[lang] || '')
+			const value = escapeXml(convertIcuToAndroid(row[lang] || ""));
 
 			const translatable =
 				isNonTranslatable && lang === 'en' ? ' translatable="false"' : ''
