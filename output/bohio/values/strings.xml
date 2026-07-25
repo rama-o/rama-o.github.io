@@ -102,8 +102,12 @@
     <string name="radio_theme_custom">Custom</string>
     <string name="radio_theme_mono_dark">Mono Dark</string>
     <string name="radio_theme_mono_light">Mono Light</string>
-    <string name="radio_theme_rama" translatable="false"></string>
+    <string name="radio_theme_rama" translatable="false">Rama</string>
     <string name="settings_section_collapse_indicator" translatable="false">[-]</string>
     <string name="settings_section_expand_indicator" translatable="false">[+]</string>
     <string name="toast_invalid_color">Invalid color</string>
+    <string name="radio_language_fi" translatable="false">Suomi</string>
+    <string name="radio_language_fil_rPH" translatable="false">Filipino</string>
+    <string name="radio_language_pt_rBR" translatable="false">Português (Brasil)</string>
+    <string name="radio_language_zn_rCN" translatable="false">简体中文</string>
 </resources>
