@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_about_label">Hakkında</string>
+    <string name="activity_settings_label">Ayarlar</string>
+    <string name="app_ads_desc">Reklamsız</string>
+    <string name="app_background_tasks_desc">Arka Planda işimiz yok!</string>
+    <string name="app_creator" translatable="false"></string>
+    <string name="app_creator_url" translatable="false"></string>
+    <string name="app_offline_desc">Tamamen Çevrimdışı</string>
+    <string name="app_trackers_desc">Takip etmiyoruz!</string>
+    <string name="btn_apply">Uygula</string>
+    <string name="btn_cancel">İptal</string>
+    <string name="btn_clear">Temizle</string>
+    <string name="btn_font_custom_pick">Yazı Tipi Dosyası Seç</string>
+    <string name="btn_go_back">Geri Dön</string>
+    <string name="btn_join_discord">Discord\'a Katıl</string>
+    <string name="btn_reset">Sıfırla</string>
+    <string name="btn_save"></string>
+    <string name="btn_theme_apply_custom">Özel Temayı Uygula</string>
+    <string name="checkbox_always_show_search_bar">Her zaman görünür</string>
+    <string name="checkbox_prevent_home_screen_rotation">Ekran döndürmeyi kilitle</string>
+    <string name="checkbox_show_system_bar">Sistem çubuğunu göster</string>
+    <string name="colorpicker_theme_accent">Vurgu</string>
+    <string name="colorpicker_theme_background_1">Arka Plan 1</string>
+    <string name="colorpicker_theme_background_2">Arka Plan 2</string>
+    <string name="colorpicker_theme_background_3">Arka Plan 3</string>
+    <string name="colorpicker_theme_background_4">Arka Plan 4</string>
+    <string name="colorpicker_theme_bg_display"></string>
+    <string name="colorpicker_theme_button_1_background">Buton 1 Arka Planı</string>
+    <string name="colorpicker_theme_button_1_background_selected"></string>
+    <string name="colorpicker_theme_button_2_background">Buton 2 Arka Planı</string>
+    <string name="colorpicker_theme_collapsible_header">Daraltılabilir Başlık</string>
+    <string name="colorpicker_theme_danger">Tehlike</string>
+    <string name="colorpicker_theme_disabled"></string>
+    <string name="colorpicker_theme_foreground">Ön Plan</string>
+    <string name="colorpicker_theme_h1">H1</string>
+    <string name="colorpicker_theme_icons">İkonlar</string>
+    <string name="colorpicker_theme_input_background">Giriş Arka Planı</string>
+    <string name="colorpicker_theme_media_background"></string>
+    <string name="colorpicker_theme_progressbar"></string>
+    <string name="colorpicker_theme_task_frequency"></string>
+    <string name="contributor_isotjs" translatable="false"></string>
+    <string name="contributor_isotjs_url" translatable="false"></string>
+    <string name="contributor_joerikaiser" translatable="false"></string>
+    <string name="contributor_joerikaiser_url" translatable="false"></string>
+    <string name="discord_url" translatable="false"></string>
+    <string name="filepicker_font_custom_none">Yazı tipi seçilmedi</string>
+    <string name="h2_color_picker">Renk Seç</string>
+    <string name="h3_app">Uygulama</string>
+    <string name="h3_contributors">Katkıda Bulunanlar</string>
+    <string name="h3_fonts">Yazı Tipleri</string>
+    <string name="h3_icons">İkonlar</string>
+    <string name="h3_language">Dil</string>
+    <string name="h3_system">Sistem</string>
+    <string name="h3_themes">Temalar</string>
+    <string name="hint_hex_color" translatable="false"></string>
+    <string name="label_zoom">Yakınlaştırma</string>
+    <string name="license_cc_4" translatable="false"></string>
+    <string name="license_gpl3" translatable="false"></string>
+    <string name="license_mit" translatable="false"></string>
+    <string name="license_ofl_1_1" translatable="false"></string>
+    <string name="name_version" translatable="false"></string>
+    <string name="product_catppuccin_creator" translatable="false"></string>
+    <string name="product_catppuccin_latte_name" translatable="false"></string>
+    <string name="product_catppuccin_name" translatable="false"></string>
+    <string name="product_catppuccin_url" translatable="false"></string>
+    <string name="product_dracula_creator" translatable="false"></string>
+    <string name="product_dracula_name" translatable="false"></string>
+    <string name="product_dracula_url" translatable="false"></string>
+    <string name="product_hackernoon_creator" translatable="false"></string>
+    <string name="product_hackernoon_name" translatable="false"></string>
+    <string name="product_hackernoon_url" translatable="false"></string>
+    <string name="product_jersey_creator" translatable="false"></string>
+    <string name="product_jersey_name" translatable="false"></string>
+    <string name="product_jersey_url" translatable="false"></string>
+    <string name="product_mako" translatable="false"></string>
+    <string name="product_mako_url" translatable="false"></string>
+    <string name="product_melange_creator" translatable="false"></string>
+    <string name="product_melange_name" translatable="false"></string>
+    <string name="product_melange_url" translatable="false"></string>
+    <string name="product_okapi" translatable="false"></string>
+    <string name="product_okapi_url" translatable="false"></string>
+    <string name="product_rama" translatable="false"></string>
+    <string name="product_teyin" translatable="false"></string>
+    <string name="product_teyin_url" translatable="false"></string>
+    <string name="product_tokyo_creator" translatable="false"></string>
+    <string name="product_tokyo_name" translatable="false"></string>
+    <string name="product_tokyo_url" translatable="false"></string>
+    <string name="product_tui" translatable="false"></string>
+    <string name="product_tui_url" translatable="false"></string>
+    <string name="product_txori" translatable="false"></string>
+    <string name="product_txori_url" translatable="false"></string>
+    <string name="radio_default">Varsayılan tema</string>
+    <string name="radio_default_system">Varsayılan (Sistem)</string>
+    <string name="radio_font_custom">Özel yazı tipi</string>
+    <string name="radio_language_english" translatable="false"></string>
+    <string name="radio_language_french" translatable="false"></string>
+    <string name="radio_language_german" translatable="false"></string>
+    <string name="radio_language_system_default">Sistem Varsayılanı (Desteklemiyorsa İngilizce olur)</string>
+    <string name="radio_language_turkish" translatable="false"></string>
+    <string name="radio_none">Yok</string>
+    <string name="radio_theme_custom">Özel</string>
+    <string name="radio_theme_mono_dark"></string>
+    <string name="radio_theme_mono_light"></string>
+    <string name="radio_theme_rama" translatable="false"></string>
+    <string name="settings_section_collapse_indicator" translatable="false"></string>
+    <string name="settings_section_expand_indicator" translatable="false"></string>
+    <string name="toast_invalid_color">Geçersiz renk</string>
+</resources>

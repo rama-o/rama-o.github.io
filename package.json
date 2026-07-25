@@ -15,5 +15,8 @@
 		"url": "https://github.com/rama-o/rama-o.github.io/issues"
 	},
 	"homepage": "https://rama-o.github.io",
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"csv-parse": "^7.0.1"
+	}
 }
