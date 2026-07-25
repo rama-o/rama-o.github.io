@@ -13,11 +13,6 @@
     <string name="altdescr_toggle_group_visibility">Näytä ryhmä</string>
     <string name="altdescr_toggle_pin_visibility">Näytä PIN</string>
     <string name="app_desc">Kevyt, siisti ja helppokäyttöinen aloitusnäyttösovellus Androidille, joka kunnioittaa yksityisyyttäsi.</string>
-    <string name="app_name" translatable="false"></string>
-    <string name="battery_status_power" translatable="false"></string>
-    <string name="battery_status_power_type" translatable="false"></string>
-    <string name="battery_temp" translatable="false"></string>
-    <string name="battery_temp_labeled" translatable="false"></string>
     <string name="btn_about_mako">Tietoa Mako:sta</string>
     <string name="btn_add_group">+ Lisää ryhmä</string>
     <string name="btn_change_wallpaper">Vaihda järjestelmän taustakuvaa</string>
@@ -53,8 +48,6 @@
     <string name="checkbox_show_ungrouped_apps">Näytä luokittelemattomat sovellukset</string>
     <string name="checkbox_show_year_day">Näytä vuoden päivä</string>
     <string name="checkbox_show_year_week">Näytä viikko</string>
-    <string name="contributor_etwasmitbaum" translatable="false"></string>
-    <string name="contributor_etwasmitbaum_url" translatable="false"></string>
     <string name="ctxmenu_move_to_group">Vaihda ryhmää…</string>
     <string name="ctxmenu_open_settings">Sovelluksen asetukset…</string>
     <string name="ctxmenu_rename_app">Muuta sovelluksen nimeä…</string>

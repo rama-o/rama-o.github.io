@@ -13,11 +13,6 @@
     <string name="altdescr_toggle_group_visibility">I-toggle ang visibility ng grupo</string>
     <string name="altdescr_toggle_pin_visibility">I-toggle ang visibility ng PIN</string>
     <string name="app_desc">Isang magaan at walang gambalang Android launcher na inuuna ang privacy at gumagana nang buo sa device, dinisenyo para sa pokus at pagiging simple.</string>
-    <string name="app_name" translatable="false"></string>
-    <string name="battery_status_power" translatable="false"></string>
-    <string name="battery_status_power_type" translatable="false"></string>
-    <string name="battery_temp" translatable="false"></string>
-    <string name="battery_temp_labeled" translatable="false"></string>
     <string name="btn_about_mako">Tungkol sa Mako</string>
     <string name="btn_add_group">+ Magdagdag ng Bagong Grupo</string>
     <string name="btn_change_wallpaper">Palitan ang wallpaper ng OS</string>
@@ -53,8 +48,6 @@
     <string name="checkbox_show_ungrouped_apps">Ipakita ang mga app na walang grupo</string>
     <string name="checkbox_show_year_day">Ipakita ang araw ng taon</string>
     <string name="checkbox_show_year_week">Ipakita ang linggo ng taon</string>
-    <string name="contributor_etwasmitbaum" translatable="false"></string>
-    <string name="contributor_etwasmitbaum_url" translatable="false"></string>
     <string name="ctxmenu_move_to_group">Palitan ang grupo...</string>
     <string name="ctxmenu_open_settings">Mga setting ng app...</string>
     <string name="ctxmenu_rename_app">Palitan ang pangalan ng app...</string>

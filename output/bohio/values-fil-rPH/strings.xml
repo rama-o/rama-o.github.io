@@ -4,8 +4,6 @@
     <string name="activity_settings_label">Mga Setting</string>
     <string name="app_ads_desc">Walang Ads</string>
     <string name="app_background_tasks_desc">Walang Background Task</string>
-    <string name="app_creator" translatable="false"></string>
-    <string name="app_creator_url" translatable="false"></string>
     <string name="app_offline_desc">Gumagana nang Offline</string>
     <string name="app_trackers_desc">Walang Tracker</string>
     <string name="btn_apply">I-apply</string>
@@ -39,11 +37,6 @@
     <string name="colorpicker_theme_media_background">Background ng Media</string>
     <string name="colorpicker_theme_progressbar">Progress Bar</string>
     <string name="colorpicker_theme_task_frequency">Dalas ng Task</string>
-    <string name="contributor_isotjs" translatable="false"></string>
-    <string name="contributor_isotjs_url" translatable="false"></string>
-    <string name="contributor_joerikaiser" translatable="false"></string>
-    <string name="contributor_joerikaiser_url" translatable="false"></string>
-    <string name="discord_url" translatable="false"></string>
     <string name="filepicker_font_custom_none">Walang Napiling Font</string>
     <string name="h2_color_picker">Pumili ng Kulay</string>
     <string name="h3_app">App</string>
@@ -53,57 +46,14 @@
     <string name="h3_language">Wika</string>
     <string name="h3_system">Sistema</string>
     <string name="h3_themes">Mga Tema</string>
-    <string name="hint_hex_color" translatable="false"></string>
     <string name="label_zoom">Zoom</string>
-    <string name="license_cc_4" translatable="false"></string>
-    <string name="license_gpl3" translatable="false"></string>
-    <string name="license_mit" translatable="false"></string>
-    <string name="license_ofl_1_1" translatable="false"></string>
-    <string name="name_version" translatable="false"></string>
-    <string name="product_catppuccin_creator" translatable="false"></string>
-    <string name="product_catppuccin_latte_name" translatable="false"></string>
-    <string name="product_catppuccin_name" translatable="false"></string>
-    <string name="product_catppuccin_url" translatable="false"></string>
-    <string name="product_dracula_creator" translatable="false"></string>
-    <string name="product_dracula_name" translatable="false"></string>
-    <string name="product_dracula_url" translatable="false"></string>
-    <string name="product_hackernoon_creator" translatable="false"></string>
-    <string name="product_hackernoon_name" translatable="false"></string>
-    <string name="product_hackernoon_url" translatable="false"></string>
-    <string name="product_jersey_creator" translatable="false"></string>
-    <string name="product_jersey_name" translatable="false"></string>
-    <string name="product_jersey_url" translatable="false"></string>
-    <string name="product_mako" translatable="false"></string>
-    <string name="product_mako_url" translatable="false"></string>
-    <string name="product_melange_creator" translatable="false"></string>
-    <string name="product_melange_name" translatable="false"></string>
-    <string name="product_melange_url" translatable="false"></string>
-    <string name="product_okapi" translatable="false"></string>
-    <string name="product_okapi_url" translatable="false"></string>
-    <string name="product_rama" translatable="false"></string>
-    <string name="product_teyin" translatable="false"></string>
-    <string name="product_teyin_url" translatable="false"></string>
-    <string name="product_tokyo_creator" translatable="false"></string>
-    <string name="product_tokyo_name" translatable="false"></string>
-    <string name="product_tokyo_url" translatable="false"></string>
-    <string name="product_tui" translatable="false"></string>
-    <string name="product_tui_url" translatable="false"></string>
-    <string name="product_txori" translatable="false"></string>
-    <string name="product_txori_url" translatable="false"></string>
     <string name="radio_default">Default</string>
     <string name="radio_default_system">Default (Sistema)</string>
     <string name="radio_font_custom">Custom na Font</string>
-    <string name="radio_language_english" translatable="false"></string>
-    <string name="radio_language_french" translatable="false"></string>
-    <string name="radio_language_german" translatable="false"></string>
     <string name="radio_language_system_default">Default ng Sistema (English kung wala)</string>
-    <string name="radio_language_turkish" translatable="false"></string>
     <string name="radio_none">Wala</string>
     <string name="radio_theme_custom">Custom</string>
     <string name="radio_theme_mono_dark">Mono Dark</string>
     <string name="radio_theme_mono_light">Mono Light</string>
-    <string name="radio_theme_rama" translatable="false"></string>
-    <string name="settings_section_collapse_indicator" translatable="false"></string>
-    <string name="settings_section_expand_indicator" translatable="false"></string>
     <string name="toast_invalid_color">Di-wastong Kulay</string>
 </resources>

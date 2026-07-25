@@ -4,8 +4,6 @@
     <string name="activity_settings_label">Configurações</string>
     <string name="app_ads_desc">Sem anúncios</string>
     <string name="app_background_tasks_desc">Sem Tarefas em segundo plano</string>
-    <string name="app_creator" translatable="false"></string>
-    <string name="app_creator_url" translatable="false"></string>
     <string name="app_offline_desc">Funciona offline</string>
     <string name="app_trackers_desc">Sem Rastreadores</string>
     <string name="btn_apply">Aplicar</string>
@@ -39,11 +37,6 @@
     <string name="colorpicker_theme_media_background">Fundo de mídia</string>
     <string name="colorpicker_theme_progressbar">Barra de Progresso</string>
     <string name="colorpicker_theme_task_frequency">Frequência de Tarefas</string>
-    <string name="contributor_isotjs" translatable="false"></string>
-    <string name="contributor_isotjs_url" translatable="false"></string>
-    <string name="contributor_joerikaiser" translatable="false"></string>
-    <string name="contributor_joerikaiser_url" translatable="false"></string>
-    <string name="discord_url" translatable="false"></string>
     <string name="filepicker_font_custom_none">Nenhuma fonte selecionada</string>
     <string name="h2_color_picker">Escolher uma cor</string>
     <string name="h3_app">Aplicativo</string>
@@ -53,57 +46,14 @@
     <string name="h3_language">Linguagem</string>
     <string name="h3_system">Sistema</string>
     <string name="h3_themes">Temas</string>
-    <string name="hint_hex_color" translatable="false"></string>
     <string name="label_zoom">Zoom</string>
-    <string name="license_cc_4" translatable="false"></string>
-    <string name="license_gpl3" translatable="false"></string>
-    <string name="license_mit" translatable="false"></string>
-    <string name="license_ofl_1_1" translatable="false"></string>
-    <string name="name_version" translatable="false"></string>
-    <string name="product_catppuccin_creator" translatable="false"></string>
-    <string name="product_catppuccin_latte_name" translatable="false"></string>
-    <string name="product_catppuccin_name" translatable="false"></string>
-    <string name="product_catppuccin_url" translatable="false"></string>
-    <string name="product_dracula_creator" translatable="false"></string>
-    <string name="product_dracula_name" translatable="false"></string>
-    <string name="product_dracula_url" translatable="false"></string>
-    <string name="product_hackernoon_creator" translatable="false"></string>
-    <string name="product_hackernoon_name" translatable="false"></string>
-    <string name="product_hackernoon_url" translatable="false"></string>
-    <string name="product_jersey_creator" translatable="false"></string>
-    <string name="product_jersey_name" translatable="false"></string>
-    <string name="product_jersey_url" translatable="false"></string>
-    <string name="product_mako" translatable="false"></string>
-    <string name="product_mako_url" translatable="false"></string>
-    <string name="product_melange_creator" translatable="false"></string>
-    <string name="product_melange_name" translatable="false"></string>
-    <string name="product_melange_url" translatable="false"></string>
-    <string name="product_okapi" translatable="false"></string>
-    <string name="product_okapi_url" translatable="false"></string>
-    <string name="product_rama" translatable="false"></string>
-    <string name="product_teyin" translatable="false"></string>
-    <string name="product_teyin_url" translatable="false"></string>
-    <string name="product_tokyo_creator" translatable="false"></string>
-    <string name="product_tokyo_name" translatable="false"></string>
-    <string name="product_tokyo_url" translatable="false"></string>
-    <string name="product_tui" translatable="false"></string>
-    <string name="product_tui_url" translatable="false"></string>
-    <string name="product_txori" translatable="false"></string>
-    <string name="product_txori_url" translatable="false"></string>
     <string name="radio_default">Padrão</string>
     <string name="radio_default_system">Padrão (Sistema)</string>
     <string name="radio_font_custom">Fonte Personalizada</string>
-    <string name="radio_language_english" translatable="false"></string>
-    <string name="radio_language_french" translatable="false"></string>
-    <string name="radio_language_german" translatable="false"></string>
     <string name="radio_language_system_default">Padrão do sistema (Inglês como alternativa padrão)</string>
-    <string name="radio_language_turkish" translatable="false"></string>
     <string name="radio_none">Nenhum</string>
     <string name="radio_theme_custom">Personalizado</string>
     <string name="radio_theme_mono_dark">Monocromático Escuro</string>
     <string name="radio_theme_mono_light">Monocromático Claro</string>
-    <string name="radio_theme_rama" translatable="false"></string>
-    <string name="settings_section_collapse_indicator" translatable="false"></string>
-    <string name="settings_section_expand_indicator" translatable="false"></string>
     <string name="toast_invalid_color">Cor Inválida</string>
 </resources>

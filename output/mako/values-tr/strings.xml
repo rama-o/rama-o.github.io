@@ -13,11 +13,6 @@
     <string name="altdescr_toggle_group_visibility">Grup görünürlüğünü değiştir</string>
     <string name="altdescr_toggle_pin_visibility">PIN görünürlüğünü değiştir</string>
     <string name="app_desc">Odak ve sadelik için tasarlanmış, gizliliği önceleyen ve tamamen cihaz üzerinde çalışan, hafif ve dikkat dağıtmayan bir Android başlatıcı.</string>
-    <string name="app_name" translatable="false"></string>
-    <string name="battery_status_power" translatable="false"></string>
-    <string name="battery_status_power_type" translatable="false"></string>
-    <string name="battery_temp" translatable="false"></string>
-    <string name="battery_temp_labeled" translatable="false"></string>
     <string name="btn_about_mako">Mako hakkında</string>
     <string name="btn_add_group">+ Yeni Grup Ekle</string>
     <string name="btn_change_wallpaper">Sistem duvar kağıdını değiştir</string>
@@ -53,8 +48,6 @@
     <string name="checkbox_show_ungrouped_apps">Gruplanmamış uygulamaları göster</string>
     <string name="checkbox_show_year_day">Yılın gününü göster</string>
     <string name="checkbox_show_year_week"></string>
-    <string name="contributor_etwasmitbaum" translatable="false"></string>
-    <string name="contributor_etwasmitbaum_url" translatable="false"></string>
     <string name="ctxmenu_move_to_group">Grubu değiştir...</string>
     <string name="ctxmenu_open_settings">Uygulama ayarları...</string>
     <string name="ctxmenu_rename_app">Uygulamayı yeniden adlandır...</string>

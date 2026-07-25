@@ -13,11 +13,6 @@
     <string name="altdescr_toggle_group_visibility">Toggle group visibility</string>
     <string name="altdescr_toggle_pin_visibility">Toggle PIN visibility</string>
     <string name="app_desc">一款轻量、简单的 Android 桌面应用，优先保护隐私且完全本地运行，专为专注与极简而设计。</string>
-    <string name="app_name" translatable="false"></string>
-    <string name="battery_status_power" translatable="false"></string>
-    <string name="battery_status_power_type" translatable="false"></string>
-    <string name="battery_temp" translatable="false"></string>
-    <string name="battery_temp_labeled" translatable="false"></string>
     <string name="btn_about_mako">关于 Mako启动器</string>
     <string name="btn_add_group">添加新群组</string>
     <string name="btn_change_wallpaper">Change OS wallpaper</string>
@@ -53,8 +48,6 @@
     <string name="checkbox_show_ungrouped_apps">Show ungrouped apps</string>
     <string name="checkbox_show_year_day">显示已过天数</string>
     <string name="checkbox_show_year_week"></string>
-    <string name="contributor_etwasmitbaum" translatable="false"></string>
-    <string name="contributor_etwasmitbaum_url" translatable="false"></string>
     <string name="ctxmenu_move_to_group">Change group...</string>
     <string name="ctxmenu_open_settings">App settings...</string>
     <string name="ctxmenu_rename_app">Rename app...</string>

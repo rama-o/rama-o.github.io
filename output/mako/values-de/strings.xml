@@ -13,11 +13,6 @@
     <string name="altdescr_toggle_group_visibility">Gruppensichtbarkeit umschalten</string>
     <string name="altdescr_toggle_pin_visibility">PIN-Sichtbarkeit umschalten</string>
     <string name="app_desc">Ein leichtgewichtiger, ablenkungsfreier Android-Launcher mit einem Fokus auf Privatssphäre und lokaler Nutzung, optimiert auf Fokus und Einfachheit.</string>
-    <string name="app_name" translatable="false"></string>
-    <string name="battery_status_power" translatable="false"></string>
-    <string name="battery_status_power_type" translatable="false"></string>
-    <string name="battery_temp" translatable="false"></string>
-    <string name="battery_temp_labeled" translatable="false"></string>
     <string name="btn_about_mako">Über Mako</string>
     <string name="btn_add_group">+ Neue Gruppe hinzufügen</string>
     <string name="btn_change_wallpaper">Betriebssystemhintergrundbild ändern</string>
@@ -53,8 +48,6 @@
     <string name="checkbox_show_ungrouped_apps">Zeige nicht gruppierte Apps an</string>
     <string name="checkbox_show_year_day">Tag des Jahres anzeigen</string>
     <string name="checkbox_show_year_week"></string>
-    <string name="contributor_etwasmitbaum" translatable="false"></string>
-    <string name="contributor_etwasmitbaum_url" translatable="false"></string>
     <string name="ctxmenu_move_to_group">Gruppe ändern...</string>
     <string name="ctxmenu_open_settings">App-Einstellungen...</string>
     <string name="ctxmenu_rename_app">App umbenennen...</string>
