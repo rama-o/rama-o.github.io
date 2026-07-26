@@ -3,6 +3,7 @@ import path from 'path'
 import { parse } from 'csv-parse/sync'
 
 const OUTPUT_DIR = './output'
+const DEFAULT_LANG = 'en'
 
 const SHEETS = [
 	{
@@ -71,6 +72,7 @@ async function processSheet(sheet) {
 	})
 
 	const languageBuffers = {}
+	const missingDefault = []
 
 	for (const lang of Object.keys(LANG_MAP)) {
 		languageBuffers[lang] = []
@@ -83,21 +85,38 @@ async function processSheet(sheet) {
 
 		const isNonTranslatable = row.no && row.no.toString().trim() !== ''
 
+		if (!row[DEFAULT_LANG] || !row[DEFAULT_LANG].toString().trim()) {
+			missingDefault.push(key)
+		}
+
 		for (const lang of Object.keys(LANG_MAP)) {
 			// Non-translatable strings only belong in the default resources.
-			if (isNonTranslatable && lang !== 'en') {
+			if (isNonTranslatable && lang !== DEFAULT_LANG) {
 				continue
 			}
 
-			const value = escapeXml(convertIcuToAndroid(row[lang] || ""));
+			const rawValue = row[lang]
+			const hasValue = rawValue != null && rawValue.toString().trim() !== ''
+
+			if (lang !== DEFAULT_LANG && !hasValue) {
+				continue
+			}
+
+			const value = escapeXml(convertIcuToAndroid(rawValue || ''))
 
 			const translatable =
-				isNonTranslatable && lang === 'en' ? ' translatable="false"' : ''
+				isNonTranslatable && lang === DEFAULT_LANG ? ' translatable="false"' : ''
 
 			languageBuffers[lang].push(
 				`    <string name="${key}"${translatable}>${value}</string>`
 			)
 		}
+	}
+
+	if (missingDefault.length) {
+		console.warn(
+			`⚠ ${sheet.name}: ${missingDefault.length} key(s) missing a "${DEFAULT_LANG}" value (fallback will be blank): ${missingDefault.join(', ')}`
+		)
 	}
 
 	for (const [lang, folder] of Object.entries(LANG_MAP)) {
