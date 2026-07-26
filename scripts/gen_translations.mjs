@@ -43,12 +43,14 @@ function escapeXml(text) {
 }
 
 function convertIcuToAndroid(str) {
-  return String(str)
-    // numbered values
-    .replace(/\{(\d+),\s*number\}/g, (_, i) => `%${Number(i) + 1}$d`)
+	return (
+		String(str)
+			// numbered values
+			.replace(/\{(\d+),\s*number\}/g, (_, i) => `%${Number(i) + 1}$d`)
 
-    // plain placeholders
-    .replace(/\{(\d+)\}/g, (_, i) => `%${Number(i) + 1}$s`);
+			// plain placeholders
+			.replace(/\{(\d+)\}/g, (_, i) => `%${Number(i) + 1}$s`)
+	)
 }
 
 async function downloadCsv(url) {
@@ -105,11 +107,14 @@ async function processSheet(sheet) {
 			const value = escapeXml(convertIcuToAndroid(rawValue || ''))
 
 			const translatable =
-				isNonTranslatable && lang === DEFAULT_LANG ? ' translatable="false"' : ''
+				isNonTranslatable && lang === DEFAULT_LANG
+					? ' translatable="false"'
+					: ''
 
-			languageBuffers[lang].push(
-				`    <string name="${key}"${translatable}>${value}</string>`
-			)
+			languageBuffers[lang].push({
+				key,
+				xml: `    <string name="${key}"${translatable}>${value}</string>`,
+			})
 		}
 	}
 
@@ -124,9 +129,13 @@ async function processSheet(sheet) {
 
 		await fs.mkdir(dir, { recursive: true })
 
+		const entries = languageBuffers[lang]
+			.sort((a, b) => a.key.localeCompare(b.key, 'en', { sensitivity: 'base' }))
+			.map(entry => entry.xml)
+
 		const xml = `<?xml version="1.0" encoding="utf-8"?>
 <resources>
-${languageBuffers[lang].join('\n')}
+${entries.join('\n')}
 </resources>
 `
 
