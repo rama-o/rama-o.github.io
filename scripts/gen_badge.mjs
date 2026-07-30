@@ -134,6 +134,7 @@ const BADGE_FILES = {
 	tui: '../img/badge_tui.svg',
 	teyin: '../img/badge_teyin.svg',
 	okapi: '../img/badge_okapi.svg',
+	jaguar: '../img/badge_jaguar.svg',
 }
 
 function formatNum(n) {

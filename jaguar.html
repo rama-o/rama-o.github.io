@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width,initial-scale=1.0"
+		/>
+
+		<!-- Project Description -->
+		<meta
+			name="description"
+			content="Okapi is a minimal, privacy-first Android communication aid designed to make one-on-one conversations easier for deaf and hard-of-hearing people, and anyone talking in loud or noisy places."
+		/>
+
+		<title>Rama</title>
+		<link
+			rel="preload"
+			href="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+			as="script"
+			crossorigin
+		/>
+		<script
+			type="module"
+			src="./js/component_loading.js"
+		></script>
+
+		<!-- Favicons -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="https://rama-io.github.io/img/favicon.svg"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="256x256"
+			href="https://rama-io.github.io/img/favicon_256x256.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="128x128"
+			href="https://rama-io.github.io/img/favicon_128x128.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="64x64"
+			href="https://rama-io.github.io/img/favicon_64x64.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="48x48"
+			href="https://rama-io.github.io/img/favicon_48x48.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="https://rama-io.github.io/img/favicon_32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="24x24"
+			href="https://rama-io.github.io/img/favicon_24x24.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="https://rama-io.github.io/img/favicon_16x16.png"
+		/>
+
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="https://rama-io.github.io/img/favicon_180x180.png"
+		/>
+
+		<meta
+			name="msapplication-TileColor"
+			content="#e9c200"
+		/>
+		<meta
+			name="msapplication-TileImage"
+			content="https://rama-io.github.io/img/favicon_128x128.png"
+		/>
+
+		<!-- Open Graph Metadata -->
+		<meta
+			property="og:title"
+			content="Rama"
+		/>
+		<meta
+			property="og:description"
+			content="Okapi is a minimal, privacy-first Android communication aid designed to make one-on-one conversations easier for deaf and hard-of-hearing people, and anyone talking in loud or noisy places."
+		/>
+		<meta
+			property="og:site_name"
+			content="Rama"
+		/>
+		<!-- <meta
+			property="og:image"
+			content="img/preview.webp"
+		/> -->
+		<meta
+			property="og:image:type"
+			content="image/png"
+		/>
+		<meta
+			property="og:image:width"
+			content="1200"
+		/>
+		<meta
+			property="og:image:height"
+			content="630"
+		/>
+
+		<!-- Scripts & Styles -->
+		<script
+			type="module"
+			src="./js/head.js"
+		></script>
+		<link
+			rel="stylesheet"
+			href="./css/rama.css"
+		/>
+	</head>
+
+	<body class="txori">
+		<rama-loading
+			blocking-request="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
+		>
+		</rama-loading>
+
+		<nav>
+			<nn-caja padding="1rem">
+				<div class="nav-controls">
+					<ul>
+						<li>
+							<a
+								target="_self"
+								href="/"
+								class="logo"
+							>
+								Rama
+							</a>
+						</li>
+
+						<li class="searchbar-area"></li>
+
+						<li>
+							<a
+								target="_self"
+								href="mako.html"
+							>
+								Mako
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="txori.html"
+							>
+								Txori
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="tui.html"
+							>
+								Tui
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="teyin.html"
+							>
+								Teyin
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="okapi.html"
+							>
+								Okapi
+							</a>
+						</li>
+						<li>
+							<a
+								target="_self"
+								href="jaguar.html"
+							>
+								Jaguar
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nn-caja>
+		</nav>
+
+		<main>
+			<header>
+				<img
+					src="https://raw.githubusercontent.com/rama-io/jaguar/master/docs/img/jaguar_header_1200x630.svg"
+				/>
+			</header>
+
+			<nn-caja
+				max-width="1000px"
+				padding="1rem"
+			>
+				<h1>jaguar</h1>
+
+				<p>
+					Communication aid designed to make one-on-one conversations easier for deaf and hard-of-hearing people, and anyone talking in loud or noisy places.
+				</p>
+
+				<div class="cta">
+					<a
+						href="https://github.com/rama-io/jaguar/releases/download/2026.2/jaguar_2026.2.apk"
+						link
+						data-app="jaguar"
+						download
+						class="nn-btn"
+					>Download Jaguar 2026.1</a>
+				</div>
+
+				<nn-fila gap="1rem">
+					<nn-pilar
+						size="(100% / 3) - (1rem * 0.75)"
+						break="md"
+					>
+						<img
+							src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png"
+							alt="home"
+						/>
+					</nn-pilar>
+					<nn-pilar
+						size="(100% / 3) - (1rem * 0.75)"
+						break="md"
+					>
+						<img
+							src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png"
+							alt="preview"
+						/>
+					</nn-pilar>
+					<nn-pilar
+						size="(100% / 3) - (1rem * 0.75)"
+						break="md"
+					>
+						<img
+							src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/4.png"
+							alt="about page"
+						/>
+					</nn-pilar>
+				</nn-fila>
+			</nn-caja>
+
+			<nn-caja
+				max-width="1000px"
+				padding="1rem"
+				class="changelog"
+			>
+				<h2>Changelog</h2>
+<section>
+			</section>
+</nn-caja>
+
+			<nn-caja
+				max-width="1000px"
+				padding="1rem"
+			>
+				<h2>Contributors</h2>
+
+				<ul class="avatars">
+				<li>
+					<a href="https://github.com/pomboverso" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/38018741?s=45" title="pomboverso" />
+					</a>
+				</li></ul>
+			</nn-caja>
+		</main>
+
+		<rama-footer></rama-footer>
+	</body>
+</html>
