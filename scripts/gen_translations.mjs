@@ -26,6 +26,7 @@ const LANG_MAP = {
 	'fil-PH': 'values-fil-rPH',
 	tr: 'values-tr',
 	fi: 'values-fi',
+	jp: 'values-jp',
 	'zh-rCN': 'values-zh-rCN',
 }
 
