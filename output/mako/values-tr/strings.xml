@@ -51,7 +51,7 @@
     <string name="ctxmenu_rename_app">Uygulamayı yeniden adlandır…</string>
     <string name="device_admin_label">Mako ekran kilidi</string>
     <string name="dialog_save_pin_title">Bu PIN kaydedilsin mi?</string>
-    <string name="dialog_save_pin_warning">Bu PIN\\'i hatırladığınızdan emin olun. PIN\\'inizi unutursanız ayarlara yeniden erişmek için Mako\\'nun uygulama verilerini temizlemeniz gerekebilir.</string>
+    <string name="dialog_save_pin_warning">Bu PIN\'i hatırladığınızdan emin olun. PIN\'inizi unutursanız ayarlara yeniden erişmek için Mako\'nun uygulama verilerini temizlemeniz gerekebilir.</string>
     <string name="disclaimer_delete_group">Uygulamalarınız aşağıdaki gruba taşınacaktır.</string>
     <string name="disclaimer_pick_clock_app">Buradan bir uygulama seçmek, onu varsayılan saat eylemi olarak ayarlar. Ana ekranınızdaki saate dokunduğunuzda bu uygulama açılır.</string>
     <string name="disclaimer_pick_date_app">Buradan bir uygulama seçmek, onu varsayılan tarih eylemi olarak ayarlar. Ana ekranınızdaki tarihe dokunduğunuzda bu uygulama açılır.</string>

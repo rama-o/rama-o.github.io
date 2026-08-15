@@ -50,7 +50,7 @@
     <string name="ctxmenu_rename_app">Renommer l\'application…</string>
     <string name="device_admin_label">Verrouillage d\'écran Mako</string>
     <string name="dialog_save_pin_title">Enregistrer ce code PIN ?</string>
-    <string name="dialog_save_pin_warning">Veillez à vous en souvenir. Si vous oubliez votre code PIN, vous devrez peut-être effacer les données de l\\'application Mako pour accéder de nouveau aux paramètres.</string>
+    <string name="dialog_save_pin_warning">Veillez à vous en souvenir. Si vous oubliez votre code PIN, vous devrez peut-être effacer les données de l\'application Mako pour accéder de nouveau aux paramètres.</string>
     <string name="disclaimer_delete_group">Vos applications seront déplacées vers le groupe suivant.</string>
     <string name="disclaimer_pick_clock_app">Sélectionner une application ici la définira comme action horloge par défaut. Lorsque vous tapotez l\'horloge sur l\'écran d\'accueil, cette application sera lancée.</string>
     <string name="disclaimer_pick_date_app">Sélectionner une application ici la définira comme action date par défaut. Lorsque vous tapotez la date sur l\'écran d\'accueil, cette application sera lancée.</string>
@@ -113,7 +113,7 @@
     <string name="toast_reset_failed">Échec de la réinitialisation</string>
     <string name="toast_select_target_group">Sélectionnez un groupe cible</string>
     <string name="toast_shortcut_added">%1$s ajouté</string>
-    <string name="toast_unable_add_shortcut">Impossible d\\'ajouter le raccourci</string>
+    <string name="toast_unable_add_shortcut">Impossible d\'ajouter le raccourci</string>
     <string name="toast_unable_launch_app">Impossible de lancer l\'application</string>
     <string name="toast_unable_open_settings">Impossible d\'ouvrir les paramètres du launcher</string>
     <string name="toast_unable_open_wallpaper_app">Aucune application de fond d\'écran disponible</string>

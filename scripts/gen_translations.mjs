@@ -36,11 +36,12 @@ function csvUrl(sheetId, gid) {
 
 function escapeXml(text) {
 	return String(text ?? '')
-		.replace(/&/g, '&amp;')
-		.replace(/'/g, "\\'")
-		.replace(/"/g, '\\"')
+		// XML escaping
+		.replace(/&(?!amp;|lt;|gt;|quot;|apos;)/g, '&amp;')
 		.replace(/</g, '&lt;')
 		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/(^|[^\\])'/g, "$1\\'")
 }
 
 function convertIcuToAndroid(str) {
