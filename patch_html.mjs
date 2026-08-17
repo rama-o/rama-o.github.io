@@ -47,8 +47,8 @@ function patchContributors(html, contributors) {
 		.join('')
 
 	return html.replace(
-		/<ul class="avatars">[\s\S]*?<\/ul>/,
-		`<ul class="avatars">${items}</ul>`
+		/<ul class="avatars contributors">[\s\S]*?<\/ul>/,
+		`<ul class="avatars contributors">${items}</ul>`
 	)
 }
 
