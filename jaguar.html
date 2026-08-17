@@ -1,278 +1,139 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge"
-		/>
-		<meta
-			name="viewport"
-			content="width=device-width,initial-scale=1.0"
-		/>
 
-		<!-- Project Description -->
-		<meta
-			name="description"
-			content="Jaguar is an Android app for practicing braille by touch-typing it."
-		/>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-		<title>Rama</title>
-		<link
-			rel="preload"
-			href="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
-			as="script"
-			crossorigin
-		/>
-		<script
-			type="module"
-			src="./js/component_loading.js"
-		></script>
+	<!-- Project Description -->
+	<meta name="description" content="Jaguar is an Android app for practicing braille by touch-typing it." />
 
-		<!-- Favicons -->
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="https://rama-io.github.io/img/favicon.svg"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="256x256"
-			href="https://rama-io.github.io/img/favicon_256x256.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="128x128"
-			href="https://rama-io.github.io/img/favicon_128x128.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="64x64"
-			href="https://rama-io.github.io/img/favicon_64x64.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="48x48"
-			href="https://rama-io.github.io/img/favicon_48x48.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="32x32"
-			href="https://rama-io.github.io/img/favicon_32x32.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="24x24"
-			href="https://rama-io.github.io/img/favicon_24x24.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="https://rama-io.github.io/img/favicon_16x16.png"
-		/>
+	<title>Rama</title>
+	<link rel="preload" href="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js" as="script"
+		crossorigin />
+	<script type="module" src="./js/component_loading.js"></script>
 
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="https://rama-io.github.io/img/favicon_180x180.png"
-		/>
+	<!-- Favicons -->
+	<link rel="icon" type="image/svg+xml" href="https://rama-io.github.io/img/favicon.svg" />
+	<link rel="icon" type="image/png" sizes="256x256" href="https://rama-io.github.io/img/favicon_256x256.png" />
+	<link rel="icon" type="image/png" sizes="128x128" href="https://rama-io.github.io/img/favicon_128x128.png" />
+	<link rel="icon" type="image/png" sizes="64x64" href="https://rama-io.github.io/img/favicon_64x64.png" />
+	<link rel="icon" type="image/png" sizes="48x48" href="https://rama-io.github.io/img/favicon_48x48.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="https://rama-io.github.io/img/favicon_32x32.png" />
+	<link rel="icon" type="image/png" sizes="24x24" href="https://rama-io.github.io/img/favicon_24x24.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="https://rama-io.github.io/img/favicon_16x16.png" />
 
-		<meta
-			name="msapplication-TileColor"
-			content="#e9c200"
-		/>
-		<meta
-			name="msapplication-TileImage"
-			content="https://rama-io.github.io/img/favicon_128x128.png"
-		/>
+	<link rel="apple-touch-icon" sizes="180x180" href="https://rama-io.github.io/img/favicon_180x180.png" />
 
-		<!-- Open Graph Metadata -->
-		<meta
-			property="og:title"
-			content="Rama"
-		/>
-		<meta
-			property="og:description"
-			content="Jaguar is an Android app for practicing braille by touch-typing it."
-		/>
-		<meta
-			property="og:site_name"
-			content="Rama"
-		/>
-		<!-- <meta
+	<meta name="msapplication-TileColor" content="#e9c200" />
+	<meta name="msapplication-TileImage" content="https://rama-io.github.io/img/favicon_128x128.png" />
+
+	<!-- Open Graph Metadata -->
+	<meta property="og:title" content="Rama" />
+	<meta property="og:description" content="Jaguar is an Android app for practicing braille by touch-typing it." />
+	<meta property="og:site_name" content="Rama" />
+	<!-- <meta
 			property="og:image"
 			content="img/preview.webp"
 		/> -->
-		<meta
-			property="og:image:type"
-			content="image/png"
-		/>
-		<meta
-			property="og:image:width"
-			content="1200"
-		/>
-		<meta
-			property="og:image:height"
-			content="630"
-		/>
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
 
-		<!-- Scripts & Styles -->
-		<script
-			type="module"
-			src="./js/head.js"
-		></script>
-		<link
-			rel="stylesheet"
-			href="./css/rama.css"
-		/>
-	</head>
+	<!-- Scripts & Styles -->
+	<script type="module" src="./js/head.js"></script>
+	<link rel="stylesheet" href="./css/rama.css" />
+</head>
 
-	<body class="txori">
-		<rama-loading
-			blocking-request="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js"
-		>
-		</rama-loading>
+<body class="txori">
+	<rama-loading blocking-request="https://cdn.jsdelivr.net/gh/nano-grid/nano-grid@v5.3.1/dist/nanogrid.js">
+	</rama-loading>
 
-		<nav>
-			<nn-caja padding="1rem">
-				<div class="nav-controls">
-					<ul>
-						<li>
-							<a
-								target="_self"
-								href="/"
-								class="logo"
-							>
-								Rama
-							</a>
-						</li>
+	<nav>
+		<nn-caja padding="1rem">
+			<div class="nav-controls">
+				<ul>
+					<li>
+						<a target="_self" href="/" class="logo">
+							Rama
+						</a>
+					</li>
 
-						<li class="searchbar-area"></li>
+					<li class="searchbar-area"></li>
 
-						<li>
-							<a
-								target="_self"
-								href="mako.html"
-							>
-								Mako
-							</a>
-						</li>
-						<li>
-							<a
-								target="_self"
-								href="txori.html"
-							>
-								Txori
-							</a>
-						</li>
-						<li>
-							<a
-								target="_self"
-								href="tui.html"
-							>
-								Tui
-							</a>
-						</li>
-						<li>
-							<a
-								target="_self"
-								href="teyin.html"
-							>
-								Teyin
-							</a>
-						</li>
-						<li>
-							<a
-								target="_self"
-								href="okapi.html"
-							>
-								Okapi
-							</a>
-						</li>
-						<li>
-							<a
-								target="_self"
-								href="jaguar.html"
-							>
-								Jaguar
-							</a>
-						</li>
-					</ul>
-				</div>
-			</nn-caja>
-		</nav>
+					<li>
+						<a target="_self" href="mako.html">
+							Mako
+						</a>
+					</li>
+					<li>
+						<a target="_self" href="txori.html">
+							Txori
+						</a>
+					</li>
+					<li>
+						<a target="_self" href="tui.html">
+							Tui
+						</a>
+					</li>
+					<li>
+						<a target="_self" href="teyin.html">
+							Teyin
+						</a>
+					</li>
+					<li>
+						<a target="_self" href="okapi.html">
+							Okapi
+						</a>
+					</li>
+					<li>
+						<a target="_self" href="jaguar.html">
+							Jaguar
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nn-caja>
+	</nav>
 
-		<main>
-			<header>
-				<img
-					src="https://raw.githubusercontent.com/rama-io/jaguar/master/docs/img/jaguar_header_1200x630.svg"
-				/>
-			</header>
+	<main>
+		<header>
+			<img src="https://raw.githubusercontent.com/rama-io/jaguar/master/docs/img/jaguar_header_1200x630.svg" />
+		</header>
 
-			<nn-caja
-				max-width="1000px"
-				padding="1rem"
-			>
-				<h1>Jaguar</h1>
+		<nn-caja max-width="1000px" padding="1rem">
+			<h1>Jaguar</h1>
 
-				<p>
-					Android app for practicing braille by touch-typing it. Instead of reading braille, you build it: each round shows you a word and you enter its braille cells one at a time on a 6-dot input, cell by cell, until the whole word is spelled out correctly.
-				</p>
+			<p>
+				Android app for practicing braille by touch-typing it. Instead of reading braille, you build it: each
+				round shows you a word and you enter its braille cells one at a time on a 6-dot input, cell by cell,
+				until the whole word is spelled out correctly.
+			</p>
 
-				<div class="cta">
-					<a
-						href="https://github.com/rama-io/jaguar/releases/download/2026.2/jaguar_2026.2.apk"
-						link
-						data-app="jaguar"
-						download
-						class="nn-btn"
-					>Download Jaguar 2026.2</a>
-				</div>
+			<div class="cta">
+				<a href="https://github.com/rama-io/jaguar/releases/download/2026.2/jaguar_2026.2.apk" link
+					data-app="jaguar" download class="nn-btn">Download Jaguar 2026.2</a>
+			</div>
 
-				<nn-fila gap="1rem">
-					<nn-pilar
-						size="(100% / 3) - (1rem * 0.75)"
-						break="md"
-					>
-						<img
-							src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png"
-							alt="stage"
-						/>
-					</nn-pilar>
-					<nn-pilar
-						size="(100% / 3) - (1rem * 0.75)"
-						break="md"
-					>
-						<img
-							src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png"
-							alt="settings"
-						/>
-					</nn-pilar>
-					<nn-pilar
-						size="(100% / 3) - (1rem * 0.75)"
-						break="md"
-					>
-						<img
-							src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png"
-							alt="about page"
-						/>
-					</nn-pilar>
-				</nn-fila>
-			</nn-caja>
+			<nn-fila gap="1rem">
+				<nn-pilar size="(100% / 3) - (1rem * 0.75)" break="md">
+					<img src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.png"
+						alt="stage" />
+				</nn-pilar>
+				<nn-pilar size="(100% / 3) - (1rem * 0.75)" break="md">
+					<img src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png"
+						alt="settings" />
+				</nn-pilar>
+				<nn-pilar size="(100% / 3) - (1rem * 0.75)" break="md">
+					<img src="https://raw.githubusercontent.com/rama-io/jaguar/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png"
+						alt="about page" />
+				</nn-pilar>
+			</nn-fila>
+		</nn-caja>
 
-			<nn-caja
-				max-width="1000px"
-				padding="1rem"
-				class="changelog"
-			>
-				<h2>Changelog</h2>
+		<nn-caja max-width="1000px" padding="1rem" class="changelog">
+			<h2>Changelog</h2>
 <section>
 				<h3>2</h3>
 				<ul>
@@ -281,21 +142,66 @@
 			</section>
 </nn-caja>
 
-			<nn-caja
-				max-width="1000px"
-				padding="1rem"
-			>
-				<h2>Contributors</h2>
+		<nn-caja max-width="1000px" padding="1rem">
+			<h3>Contributors</h3>
 
-				<ul class="avatars">
+			<ul class="avatars contributors">
 				<li>
 					<a href="https://github.com/pomboverso" target="_blank">
 						<img src="https://avatars.githubusercontent.com/u/38018741?s=45" title="pomboverso" />
 					</a>
 				</li></ul>
-			</nn-caja>
-		</main>
 
-		<rama-footer></rama-footer>
-	</body>
+			<h3>Icons and Fonts</h3>
+
+			<ul class="avatars">
+				<li>
+					<a href="https://github.com/hackernoon/pixel-icon-library" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/38445269?s=45"
+							title="HackerNoon's Pixel Icon Library - CC 4.0" />
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/scfried/soft-type-jersey" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/10519154?s=45"
+							title="Sarah Cadigan-Fried - Jersey 25 - OFL 1.1" />
+					</a>
+				</li>
+			</ul>
+
+			<h3>Themes</h3>
+
+			<ul class="avatars">
+				<li>
+					<a href="https://github.com/dracula" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/19436447?s=45"
+							title="Zeno Rocha - Dracula - MIT" />
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/catppuccin" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/93489351?s=45"
+							title="Pocco - Catppuccin - MIT" />
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/tokyo-night" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/103661550?s=45 "
+							title="Enkia - Tokyo Night - MIT" />
+
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/savq/melange-nvim" target="_blank">
+						<img src="https://avatars.githubusercontent.com/u/30883030?s=45"
+							title="Savq - Melange Dark - MIT" />
+					</a>
+				</li>
+			</ul>
+		</nn-caja>
+	</main>
+
+	<rama-footer></rama-footer>
+</body>
+
 </html>
