@@ -8,7 +8,6 @@ const PAGES = [
 	{ file: 'tui.html', app: 'tui' },
 	{ file: 'teyin.html', app: 'teyin' },
 	{ file: 'okapi.html', app: 'okapi' },
-	{ file: 'index.html', index: true },
 ]
 
 // ---------------------------------------------------------------------------
@@ -103,12 +102,6 @@ export async function patchAllHtml(rootDir, repos, releases) {
 		let html = readFileSync(filePath, 'utf8')
 
 		console.log(`  📄 ${page.file}`)
-
-		if (page.index) {
-			html = patchIndexButtons(html, releases)
-			writeFileSync(filePath, html)
-			continue
-		}
 
 		const app = page.app
 		const release = releases[app]
