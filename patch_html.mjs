@@ -8,6 +8,7 @@ const PAGES = [
 	{ file: 'tui.html', app: 'tui' },
 	{ file: 'teyin.html', app: 'teyin' },
 	{ file: 'okapi.html', app: 'okapi' },
+	{ file: 'jaguar.html', app: 'jaguar' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -28,29 +29,6 @@ function patchRelease(html, release, app) {
 			const newAttrs = /href=/.test(attrs)
 				? attrs.replace(/href="[^"]*"/, `href="${release.apkUrl}"`)
 				: `${attrs} href="${release.apkUrl}"`
-			return `<a${newAttrs}>${label}</a>`
-		}
-	)
-}
-
-function patchIndexButtons(html, releases) {
-	return html.replace(
-		/<a\b((?:[^>]|\n)*?)>([\s\S]*?)<\/a[\s]*>/g,
-		(match, attrs) => {
-			const appMatch = attrs.match(/data-app="([^"]+)"/)
-			if (!appMatch) return match
-
-			const app = appMatch[1]
-			const release = releases[app]
-
-			if (!release?.apkUrl) {
-				console.warn(`  ⚠ no release found for ${app}`)
-				return match
-			}
-
-			const version = release.tag.replace(/^v/, '')
-			const label = `Download ${formatName(app)} ${version}`
-			const newAttrs = attrs.replace(/href="[^"]*"/, `href="${release.apkUrl}"`)
 			return `<a${newAttrs}>${label}</a>`
 		}
 	)
