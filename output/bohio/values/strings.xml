@@ -49,10 +49,12 @@
     <string name="filepicker_font_custom_none">No font selected</string>
     <string name="h2_color_picker">Pick a Color</string>
     <string name="h3_app">App</string>
-    <string name="h3_contributors">Contributors</string>
+    <string name="h3_apps_by_rama">Apps by Rama</string>
+    <string name="h3_contributors">Maintainers</string>
     <string name="h3_fonts">Fonts</string>
     <string name="h3_icons">Icons</string>
     <string name="h3_language">Language</string>
+    <string name="h3_links">Community Links</string>
     <string name="h3_system">System</string>
     <string name="h3_themes">Themes</string>
     <string name="hint_hex_color" translatable="false">#RRGGBB</string>
@@ -112,6 +114,7 @@
     <string name="radio_theme_mono_dark">Mono Dark</string>
     <string name="radio_theme_mono_light">Mono Light</string>
     <string name="radio_theme_rama" translatable="false">Rama</string>
+    <string name="rama_url" translatable="false">rama-io.github.io</string>
     <string name="settings_section_collapse_indicator" translatable="false">[-]</string>
     <string name="settings_section_expand_indicator" translatable="false">[+]</string>
     <string name="toast_invalid_color">Invalid color</string>
