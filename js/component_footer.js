@@ -18,6 +18,9 @@ customElements.define(
         <li>
           <a href="https://www.youtube.com/@rama-io" target="_BLANK">youtube</a>
         </li>
+         <li>
+          <a href="https://discord.gg/zFFupY8PFE" target="_BLANK">discord</a>
+        </li>
       </ul>
       <time datetime="2026/05/02">2026.05.02</time>
     </footer>

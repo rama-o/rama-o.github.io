@@ -325,7 +325,7 @@ nn-caja {
 
 .cta {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	flex-wrap: wrap;
 	gap: 1rem;
 	align-items: center;
