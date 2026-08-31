@@ -20,6 +20,7 @@ const SHEETS = [
 
 const LANG_MAP = {
 	en: 'values',
+	es: 'values-es',
 	de: 'values-de',
 	fr: 'values-fr',
 	'pt-BR': 'values-pt-rBR',

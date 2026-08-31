@@ -11,7 +11,6 @@
     <string name="btn_clear">Effacer</string>
     <string name="btn_font_custom_pick">Choisir un fichier de police</string>
     <string name="btn_go_back">Retour</string>
-    <string name="btn_join_discord">Rejoindre Discord</string>
     <string name="btn_reset">Réinitialiser</string>
     <string name="btn_save">Enregistrer</string>
     <string name="btn_theme_apply_custom">Appliquer le thème personnalisé</string>

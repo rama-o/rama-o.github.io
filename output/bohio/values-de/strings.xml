@@ -11,7 +11,6 @@
     <string name="btn_clear">Löschen</string>
     <string name="btn_font_custom_pick">Schriftart-Datei auswählen</string>
     <string name="btn_go_back">Zurück</string>
-    <string name="btn_join_discord">Discord beitreten</string>
     <string name="btn_reset">Zurücksetzen</string>
     <string name="btn_theme_apply_custom">Benutzerdefiniertes Design anwenden</string>
     <string name="checkbox_always_show_search_bar">Immer anzeigen</string>

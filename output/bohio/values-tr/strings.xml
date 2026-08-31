@@ -11,7 +11,6 @@
     <string name="btn_clear">Temizle</string>
     <string name="btn_font_custom_pick">Yazı Tipi Dosyası Seç</string>
     <string name="btn_go_back">Geri Dön</string>
-    <string name="btn_join_discord">Discord\'a Katıl</string>
     <string name="btn_reset">Sıfırla</string>
     <string name="btn_theme_apply_custom">Özel Temayı Uygula</string>
     <string name="checkbox_always_show_search_bar">Her zaman görünür</string>

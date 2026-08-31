@@ -11,7 +11,6 @@
     <string name="btn_clear">Tyhjennä</string>
     <string name="btn_font_custom_pick">Valitse fonttitiedosto</string>
     <string name="btn_go_back">Takaisin</string>
-    <string name="btn_join_discord">Liity Discordiin</string>
     <string name="btn_reset">Nollaa</string>
     <string name="btn_save">Tallenna</string>
     <string name="btn_theme_apply_custom">Käytä mukautettua teemaa</string>
